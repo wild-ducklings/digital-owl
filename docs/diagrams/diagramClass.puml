@@ -1,0 +1,221 @@
+@startuml Repository
+namespace Repository {
+    namespace Interface {
+        namespace Entities {
+            interface IEntity {}
+            interface ITimestamp {}
+        }
+        namespace Base {
+            interface IGenericRepository<T where T : class, IEntity> {}
+            interface IUnitOfWork  {}
+        }
+        namespace Repositories {
+            interface IUserRepository {}
+            interface IPollRepository {}
+            interface IPollQuestionRepository {}
+            interface IPollAnswerRepository {}
+            interface IUserPollAnswerRepository {}
+            interface IGroupRepository {}
+            interface IRoleRepository {}
+            interface IGroupTypeRepository {}
+            interface IGroupMemberRepository {}
+            interface IGroupMessageRepository {}
+        }
+    }
+    namespace Entities {
+        class Poll {}
+        class PollQuestion {}
+        class PollAnswer {}
+        class UserPollAnswer {}
+        class Group {}
+        class Role {}
+        class GroupType {}
+        class GroupMember {}
+        class GroupMessage {}
+
+        namespace Identity {
+            class User {}
+        }
+        Poll o--left- Repository.Entities.Identity.User
+        Poll o- UserPollAnswer
+        UserPollAnswer o-- Repository.Entities.Identity.User
+        PollQuestion o- Poll
+        PollAnswer o- PollQuestion
+        Repository.Entities.Identity.User -up-o GroupMember
+        Repository.Entities.Identity.User -o GroupMessage
+        GroupMember o-up-o Role
+        GroupMember o-up-o Group
+        Group o--o GroupType
+        Group --o GroupMessage
+    }
+
+    namespace Repositories {
+        namespace Base{
+            abstract GenericRepository<T where T : class, IEntity> {}
+            class UnitOfWork <<Singleton>> {}
+        }
+        class UserRepository <<Singleton>> {}
+        class PollRepository <<Singleton>> {}
+        class PollQuestionRepository <<Singleton>> {}
+        class PollAnswerRepository <<Singleton>> {}
+        class UserPollAnswerRepository <<Singleton>> {}
+        class GroupRepository <<Singleton>> {}
+        class RoleRepository <<Singleton>> {}
+        class GroupTypeRepository <<Singleton>> {}
+        class GroupMemberRepository <<Singleton>> {}
+        class GroupMessageRepository <<Singleton>> {}
+
+        ' GenericRepository --- UserRepository
+        ' GenericRepository --- PollRepository
+        ' GenericRepository --- PollQuestionRepository
+        ' GenericRepository --- PollAnswerRepository
+        ' GenericRepository --- UserPollAnswerRepository
+        ' GenericRepository --- GroupRepository
+        ' GenericRepository --- RoleRepository
+        ' GenericRepository --- GroupTypeRepository
+        ' GenericRepository --- GroupMemberRepository
+        ' GenericRepository --- GroupMessageRepository
+
+        ' UnitOfWork --- UserRepository
+        ' UnitOfWork --- PollRepository
+        ' UnitOfWork --- PollQuestionRepository
+        ' UnitOfWork --- PollAnswerRepository
+        ' UnitOfWork --- UserPollAnswerRepository
+        ' UnitOfWork --- GroupRepository
+        ' UnitOfWork --- RoleRepository
+        ' UnitOfWork --- GroupTypeRepository
+        ' UnitOfWork --- GroupMemberRepository
+        ' UnitOfWork --- GroupMessageRepository
+    }
+}
+@enduml
+
+@startuml Service
+namespace Service {
+    namespace Interface {
+        namespace Base {
+            interface IBaseService {}
+        }
+        namespace Services {
+            interface IUserService {}
+            interface IPollService {}
+            interface IPollQuestionService {}
+            interface IPollAnswerService {}
+            interface IUserPollAnswerService {}
+            interface IGroupService {}
+            interface IRoleService {}
+            interface IGroupTypeService {}
+            interface IGroupMemberService {}
+            interface IGroupMessageService {}
+        }
+    }
+   
+    namespace Dtos {
+        namespace Base {
+            class DtoResponse {}
+            class DtoResponseResult {}
+        }
+        class DtoUser {}
+        class DtoPoll {}
+        class DtoPollQuestion {}
+        class DtoPollAnswer {}
+        class DtoUserPollAnswer {}
+        class DtoGroup {}
+        class DtoRole {}
+        class DtoGroupType {}
+        class DtoGroupMember {}
+        class DtoGroupMessage {}
+    }
+
+    namespace Services {
+        namespace Base {
+            abstract BaseService {}
+        }
+        class UserService <<Singleton>> {}
+        class PollService <<Singleton>> {}
+        class PollQuestionService <<Singleton>> {}
+        class PollAnswerService <<Singleton>> {}
+        class UserPollAnswerService <<Singleton>> {}
+        class GroupService <<Singleton>> {}
+        class RoleService <<Singleton>> {}
+        class GroupTypeService <<Singleton>> {}
+        class GroupMemberService <<Singleton>> {}
+        class GroupMessageService <<Singleton>> {}
+    }
+    namespace Infrastracture {
+        class DtoToEntityMappingProfile {}
+    }
+}
+@enduml
+
+@startuml Api
+namespace Api {
+    namespace Models {
+        class ViewUser {}
+        class ViewPoll {}
+        class ViewPollQuestion {}
+        class ViewPollAnswer {}
+        class ViewUserPollAnswer {}
+        class ViewGroup {}
+        class ViewRole {}
+        class ViewGroupType {}
+        class ViewGroupMember {}
+        class ViewGroupMessage {}
+
+        class CreateUser {}
+        class CreatePoll {}
+        class CreatePollQuestion {}
+        class CreatePollAnswer {}
+        class CreateUserPollAnswer {}
+        class CreateGroup {}
+        class CreateRole {}
+        class CreateGroupType {}
+        class CreateGroupMember {}
+        class CreateGroupMessage {}
+
+        class ValidationUser {}
+        class ValidationPoll {}
+        class ValidationPollQuestion {}
+        class ValidationPollAnswer {}
+        class ValidationUserPollAnswer {}
+        class ValidationGroup {}
+        class ValidationRole {}
+        class ValidationGroupType {}
+        class ValidationGroupMember {}
+        class ValidationGroupMessage {}
+    }
+
+    namespace Controllers {
+        namespace Base {
+            abstract BaseController {}
+        }
+        class AuthController {}
+        class RegistrationController {}
+        class PollController {}
+        class PollQuestionController {}
+        class PollAnswerController {}
+        class UserPollAnswerController {}
+        class GroupController {}
+        class RoleController {}
+        class GroupTypeController {}
+        class GroupMemberController {}
+        class GroupMessageController {}
+    }
+
+    namespace Startup {
+        class Startup {}
+        class ServiceRegister {}
+        class AuthConfiguration {}
+
+    }
+
+    namespace Infrastracture {
+        class ModelToDtoMappingProfile {}
+        namespace Auth {
+            class JwtFactory {}
+            class JwtIssuerOptions {}
+        }
+    }
+    class Program {}
+}
+@enduml

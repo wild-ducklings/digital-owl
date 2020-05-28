@@ -1,0 +1,37 @@
+@startuml Concept
+' skinparam rectangle {
+'     roundCorner<<Concept>> 25
+' }
+skinparam rectangle {
+    roundCorner 25
+}
+
+rectangle "Concept Model" <<Concept>>{
+
+    actor EndUser
+    rectangle DO {
+        rectangle Frontend {
+            component WebClient 
+        }
+        rectangle Backend {
+            ' component Api
+            ' component Services 
+            ' component Repositories 
+            [WebClient] --> [Api]
+            [Api] --> [Services]
+            [Services] --> [Repositories]
+        }
+        rectangle Utilities {
+            [DatabaseScript] 
+            [Repositories] <-left- [Migrations]
+        }
+    }
+    database DB
+
+
+    EndUser -left-> [WebClient]
+    [Repositories] --> DB
+    [Migrations] --> DB
+    [DatabaseScript] -down-> DB
+}
+@enduml
