@@ -1,0 +1,12 @@
+# diargam output
+ out/
+
+# ide config
+.idea/
+
+# c# builds
+bin/
+obj/
+
+# env file
+.env
