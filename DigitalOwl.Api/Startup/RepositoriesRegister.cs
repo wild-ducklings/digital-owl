@@ -11,7 +11,6 @@ namespace DigitalOwl.Api.Startup
         public static void Register(IServiceCollection services)
         {
             // services.AddScoped<ITweetRepository, TweetRepository>();
-
         }
     }
 }

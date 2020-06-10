@@ -14,8 +14,16 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DigitalOwl.Api.Startup
 {
+    /// <summary>
+    /// Class to configure things such as JWT and temporary Identity and Identity Polices
+    /// </summary>
     public static class AuthConfiguration
     {
+        /// <summary>
+        ///  Method that configure things such as JWT and temporary Identity and Identity Polices
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
             ConfigureJwt(services, configuration);

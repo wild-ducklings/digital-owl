@@ -12,9 +12,13 @@ using System.Reflection;
 
 namespace DigitalOwl.Api
 {
-// #pragma warning disable 1591
+    /// <summary>
+    /// Start Class
+    /// dotnet generate nothing interesting
+    /// </summary>
     public class Program
     {
+        // // code for logging by Elasticsearch
         // private static void ConfigureLogging()
         // {
         //     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -35,7 +39,7 @@ namespace DigitalOwl.Api
         //         .ReadFrom.Configuration(configuration)
         //         .CreateLogger();
         // }
-
+        //
         // private static ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration,
         //     string environment)
         // {
@@ -47,12 +51,17 @@ namespace DigitalOwl.Api
         //     };
         // }
 
+        /// <summary>
+        /// dotnet generate nothing interesting
+        /// </summary>
         public static void Main(string[] args)
         {
+            // // code for logging by Elasticsearch
             // ConfigureLogging();
             // try
             // {
             CreateHostBuilder(args).Build().Run();
+            // code for logging by Elasticsearch
             // }
             // catch (System.Exception ex)
             // {
@@ -61,10 +70,14 @@ namespace DigitalOwl.Api
             // }
         }
 
+        /// <summary>
+        /// dotnet generate nothing interesting
+        /// </summary>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup.Startup>(); });
 
+        // // code for logging by Elasticsearch
         // .ConfigureAppConfiguration(configuration =>
         // {
         //     configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -73,7 +86,4 @@ namespace DigitalOwl.Api
         //         optional: true);
         // }).UseSerilog();
     }
-
-
-// #pragma warning restore 1591
 }

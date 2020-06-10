@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-cd DigitalOwl.Api;
+cd ../DigitalOwl.Api;
 dotnet ef database update;
-cd ..;
+cd ../DigitalOwl.Scripts;

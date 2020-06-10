@@ -30,15 +30,23 @@ using Newtonsoft.Json.Serialization;
 
 namespace DigitalOwl.Api.Startup
 {
+    /// <summary>
+    ///  Main config file
+    /// </summary>
     public class Startup
     {
         private readonly IConfiguration _configuration;
-
+        
+        /// <summary>
+        /// Ctor nothing intresting
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        
         private static void ConfigureMapper(IServiceCollection services)
         {
             var mappingConfig = new MapperConfiguration(mc =>
@@ -51,7 +59,10 @@ namespace DigitalOwl.Api.Startup
             services.AddSingleton(mapper);
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(x =>
@@ -86,7 +97,12 @@ namespace DigitalOwl.Api.Startup
                 // c.IncludeXmlComments(xmlPath);
             });
         }
-
+        
+        /// <summary>
+        /// Configure App Middleware 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
