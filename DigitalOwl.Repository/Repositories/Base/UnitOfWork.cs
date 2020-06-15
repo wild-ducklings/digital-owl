@@ -54,5 +54,18 @@ namespace DigitalOwl.Repository.Repositories.Base
         }
 
         #endregion
+
+        #region PollRepository
+
+        private IPollRepository _pollRepository;
+        /// <summary>
+        /// Poll repository access point.
+        /// </summary>
+        public IPollRepository PollRepository
+        {
+            get { return _pollRepository ??= new PollRepository(_dbContext); }
+        }
+
+        #endregion
     }
 }

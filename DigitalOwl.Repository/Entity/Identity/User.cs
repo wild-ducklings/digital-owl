@@ -8,9 +8,16 @@ namespace DigitalOwl.Repository.Entity.Identity
     public class User : IdentityUser<int>, IEntity
     {
         public string Role { get; set; }
-
-        #region TimeStamps
-
-        #endregion
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("CreatedBy"))] 
+        public virtual IEnumerable<Poll> PollsCreated { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("UpdatedBy"))]
+        public virtual IEnumerable<Poll> PollsUpdated { get; set; }
     }
 }
