@@ -31,7 +31,8 @@ namespace DigitalOwl.Repository
         #endregion
 
         #region DbSet
-        
+
+        public DbSet<Group> Groups { get; set; }
 
         #endregion
 

@@ -7,5 +7,7 @@ namespace DigitalOwl.Repository.Interface.Base
     {
         public void SaveChanges();
         public Task<int> SaveChangesAsync();
+
+        public IGroupRepository GroupRepository { get; }
     }
 }
