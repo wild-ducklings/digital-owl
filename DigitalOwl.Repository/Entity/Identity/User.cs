@@ -14,6 +14,17 @@ namespace DigitalOwl.Repository.Entity.Identity
         ///  Temporary Role which allow user to do certain things 
         /// </summary>
         public string Role { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("CreatedBy"))] 
+        public virtual IEnumerable<Poll> PollsCreated { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("UpdatedBy"))]
+        public virtual IEnumerable<Poll> PollsUpdated { get; set; }
 
         #region TimeStamps
 

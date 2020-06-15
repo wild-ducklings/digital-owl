@@ -31,6 +31,11 @@ namespace DigitalOwl.Repository
         #endregion
 
         #region DbSet
+        
+        /// <summary>
+        /// Set Polls table in database.
+        /// </summary>
+        public DbSet<Poll> Polls { get; set;}
 
         public DbSet<Group> Groups { get; set; }
 
