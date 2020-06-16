@@ -1,3 +1,5 @@
+using DigitalOwl.Service.Interface;
+using DigitalOwl.Service.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DigitalOwl.Api.Startup
@@ -14,7 +16,7 @@ namespace DigitalOwl.Api.Startup
         /// <param name="services"></param>
         public static void Register(IServiceCollection services)
         {
-        // services.AddScoped<ITweetRepository, TweetRepository>();
+        services.AddScoped<IPollService, PollService>();
         }
     }
 }

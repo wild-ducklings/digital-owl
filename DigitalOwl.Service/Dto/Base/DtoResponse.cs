@@ -2,41 +2,41 @@ using System.Collections.Generic;
 
 namespace DigitalOwl.Service.Dto.Base
 {
-    public class ResponseDto
+    public class DtoResponse
     {
         public IEnumerable<string> Errors { get; private set; }
         public bool Succeeded { get; private set; }
 
-        protected ResponseDto(IEnumerable<string> errors)
+        protected DtoResponse(IEnumerable<string> errors)
         {
             Errors = errors;
             Succeeded = false;
         }
 
-        protected ResponseDto(string error)
+        protected DtoResponse(string error)
         {
             Errors = new List<string> {error};
             Succeeded = false;
         }
 
-        protected ResponseDto(bool succeeded)
+        protected DtoResponse(bool succeeded)
         {
             Succeeded = succeeded;
         }
 
-        public static ResponseDto Failed(IEnumerable<string> errors)
+        public static DtoResponse Failed(IEnumerable<string> errors)
         {
-            return new ResponseDto(errors);
+            return new DtoResponse(errors);
         }
 
-        public static ResponseDto Failed(string error)
+        public static DtoResponse Failed(string error)
         {
-            return new ResponseDto(error);
+            return new DtoResponse(error);
         }
         
-        public static ResponseDto Success()
+        public static DtoResponse Success()
         {
-            return new ResponseDto(true);
+            return new DtoResponse(true);
         }
     }
 }
