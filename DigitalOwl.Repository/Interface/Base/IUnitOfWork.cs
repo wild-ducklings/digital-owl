@@ -12,5 +12,7 @@ namespace DigitalOwl.Repository.Interface.Base
         /// Poll repository access point.
         /// </summary>
         public IPollRepository PollRepository { get; }
+
+        public IGroupRepository GroupRepository { get; }
     }
 }

@@ -37,6 +37,8 @@ namespace DigitalOwl.Repository
         /// </summary>
         public DbSet<Poll> Polls { get; set;}
 
+        public DbSet<Group> Groups { get; set; }
+
         #endregion
 
         #region SaveMethods

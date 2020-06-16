@@ -67,5 +67,12 @@ namespace DigitalOwl.Repository.Repositories.Base
         }
 
         #endregion
+
+        private IGroupRepository _groupRepository;
+
+        public IGroupRepository GroupRepository
+        {
+            get { return _groupRepository ??= new GroupRepository(_dbContext); }
+        }
     }
 }
