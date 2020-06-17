@@ -36,21 +36,24 @@ namespace DigitalOwl.Service.Services
 
         public async Task<DtoResponseResult<DtoPoll>> GetById(int pollId)
         {
-            var entity = await _unitOfWork.PollRepository.FindAsync(p=>p.Id==pollId);
+            var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == pollId);
+            //TODO:
+//            if (entity == null)
+//                return DtoResponseResult<DtoPoll>.Failed("Poll not found");
             return DtoResponseResult<DtoPoll>.CreateResponse(_mapper.Map<DtoPoll>(entity));
         }
 
         public async Task<DtoResponse> UpdateAsync(DtoPoll dto, int userId)
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == dto.Id);
-            
-            if(entity == null)
+
+            if (entity == null)
                 return DtoResponse.Failed("Poll not found");
 
             _mapper.Map(dto, entity);
             entity.UpdatedDate = DateTime.UtcNow;
             entity.UpdatedById = userId;
-            
+
             var entityResponse = _unitOfWork.PollRepository.Update(entity, dto.Id);
             await _unitOfWork.SaveChangesAsync();
             return DtoResponseResult<DtoPoll>.CreateResponse(_mapper.Map<DtoPoll>(entityResponse));
@@ -59,10 +62,10 @@ namespace DigitalOwl.Service.Services
         public async Task<DtoResponse> Delete(int pollId)
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == pollId);
-            
-            if(entity == null)
+
+            if (entity == null)
                 return DtoResponse.Failed("Poll not found");
-            
+
             _unitOfWork.PollRepository.Delete(entity);
             await _unitOfWork.SaveChangesAsync();
             return DtoResponse.Success();

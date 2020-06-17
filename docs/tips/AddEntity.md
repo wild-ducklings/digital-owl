@@ -17,7 +17,6 @@
 6. Write unit test.
 #### Controller phase
 1. Create Model in Api:
-    - ViewModel, and/or
-    - CreateModel and ValidationModel.
+    - CreateModel and ValidateModel [syntax: Create<Name>, Validate<Name>].
 2. Add map for AutoMapper in Infrastructure/ModelToDtoMapperProfile.
 3. Write integration test.

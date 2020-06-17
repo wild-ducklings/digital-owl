@@ -29,10 +29,6 @@
         <ProjectReference Include="..\DigitalOwl.Service\DigitalOwl.Service.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Model" />
-    </ItemGroup>
-
     <!--    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">-->
     <!--        <DocumentationFile>bin\Debug\netcoreapp3.1\Avalanche.Api.xml</DocumentationFile>-->
     <!--    </PropertyGroup>-->

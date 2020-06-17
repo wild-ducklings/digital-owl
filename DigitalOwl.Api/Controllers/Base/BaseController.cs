@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DigitalOwl.Api.Controllers.Base
 {
-    public class BaseController<TController> : Controller
+    public class BaseController<TController> : ControllerBase
     {
         protected readonly IMapper _mapper;
         protected readonly ILogger<TController> _logger;

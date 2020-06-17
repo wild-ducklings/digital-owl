@@ -12,7 +12,7 @@
 //     [Route("api/[controller]")]
 //     public class RegistrationController : Controller
 //     {
-//         private readonly ApplicationDbContext _appDbContext;
+//          private readonly ApplicationDbContext _appDbContext;
 //         private readonly UserManager<User> _userManager;
 //         private readonly IMapper _mapper;
 //
