@@ -38,17 +38,17 @@ namespace DigitalOwl.Service.Services
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == pollId);
             //TODO:
-//            if (entity == null)
-//                return DtoResponseResult<DtoPoll>.Failed("Poll not found");
+            if (entity == null)
+                return DtoResponseResult<DtoPoll>.FailedResponse("Poll not found");
             return DtoResponseResult<DtoPoll>.CreateResponse(_mapper.Map<DtoPoll>(entity));
         }
 
-        public async Task<DtoResponse> UpdateAsync(DtoPoll dto, int userId)
+        public async Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId)
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == dto.Id);
 
             if (entity == null)
-                return DtoResponse.Failed("Poll not found");
+                return DtoResponseResult<DtoPoll>.FailedResponse("Poll not found");
 
             _mapper.Map(dto, entity);
             entity.UpdatedDate = DateTime.UtcNow;

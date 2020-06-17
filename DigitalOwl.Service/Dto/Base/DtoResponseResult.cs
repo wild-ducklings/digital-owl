@@ -29,12 +29,12 @@ namespace DigitalOwl.Service.Dto.Base
         }
 
         // TODO make it Failed method
-        public static DtoResponseResult<T> CreateResponse(IEnumerable<string> errors)
+        public static DtoResponseResult<T> FailedResponse(IEnumerable<string> errors)
         {
             return new DtoResponseResult<T>(errors);
         }
 
-        public static DtoResponseResult<T> CreateResponse(string error)
+        public static DtoResponseResult<T> FailedResponse(string error)
         {
             return new DtoResponseResult<T>(error);
         }

@@ -13,7 +13,7 @@ namespace DigitalOwl.Service.Interface
         Task<DtoResponseResult<IEnumerable<DtoGroup>>> GetAll();
         Task<DtoResponseResult<DtoGroup>> GetById(int id);
 
-        Task<DtoResponse> UpdateAsync(DtoGroup dto, int userId);
+        Task<DtoResponseResult<DtoGroup>> UpdateAsync(DtoGroup dto, int userId);
 
         Task<DtoResponse> Delete(int id);
     }

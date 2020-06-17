@@ -33,6 +33,7 @@ namespace DigitalOwl.Service.Services
         public async Task<DtoResponseResult<IEnumerable<DtoGroup>>> GetAll()
         {
             var entities = await _unitOfWork.GroupRepository.GetAllAsync();
+            
             return DtoResponseResult<IEnumerable<DtoGroup>>.CreateResponse(
                 _mapper.Map<IEnumerable<DtoGroup>>(entities));
         }
@@ -41,16 +42,22 @@ namespace DigitalOwl.Service.Services
         {
             var entity = await _unitOfWork.GroupRepository.FindAsync(g => g.Id == id);
 
+            if (entity == null)
+            {
+                return DtoResponseResult<DtoGroup>.FailedResponse("Group not found");
+            }
+
             return DtoResponseResult<DtoGroup>.CreateResponse(
                 _mapper.Map<DtoGroup>(entity));
         }
 
-        public async Task<DtoResponse> UpdateAsync(DtoGroup dto, int userId)
+        public async Task<DtoResponseResult<DtoGroup>> UpdateAsync(DtoGroup dto, int userId)
         {
             var entity = await _unitOfWork.GroupRepository.FindAsync(g => g.Id == dto.Id);
+            
             if (entity == null)
             {
-                return DtoResponse.Failed("Group not found");
+                return DtoResponseResult<DtoGroup>.FailedResponse("Group not found");
             }
 
             _mapper.Map(dto, entity);
@@ -66,6 +73,7 @@ namespace DigitalOwl.Service.Services
         public async Task<DtoResponse> Delete(int id)
         {
             var entity = await _unitOfWork.GroupRepository.FindAsync(g => g.Id == id);
+            
             if (entity == null)
             {
                 return DtoResponse.Failed("Group not found - task failed successfully");

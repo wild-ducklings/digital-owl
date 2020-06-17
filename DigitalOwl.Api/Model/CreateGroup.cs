@@ -4,7 +4,7 @@ namespace DigitalOwl.Api.Model
 {
     public class CreateGroup
     {
-        public string Name;
+        public string Name { get; set; }
     }
 
     public class ValidateGroup : AbstractValidator<CreateGroup>

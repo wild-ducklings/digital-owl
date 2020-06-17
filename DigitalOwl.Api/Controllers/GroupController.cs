@@ -9,11 +9,13 @@ using DigitalOwl.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace DigitalOwl.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    // [ApiConventionType(typeof(DefaultApiConventions))]
     public class GroupController : BaseController<GroupController>
     {
         private IGroupService _groupService;
@@ -51,6 +53,12 @@ namespace DigitalOwl.Api.Controllers
         }
 
         [HttpPost("")]
+        [ProducesResponseType(typeof(DtoGroup), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary),
+            StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(System.Collections.Generic.IEnumerable<string>),
+            StatusCodes.Status422UnprocessableEntity)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Create([FromBody] CreateGroup model)
         {
             if (!ModelState.IsValid)
@@ -61,14 +69,15 @@ namespace DigitalOwl.Api.Controllers
             var dto = _mapper.Map<DtoGroup>(model);
             dto.Id = 0;
 
-            var newDto = await _groupService.CreateAsync(dto, UserId);
+            var result = await _groupService.CreateAsync(dto, UserId);
 
-            if (!newDto.Succeeded)
+            if (!result.Succeeded)
             {
-                return UnprocessableEntity(newDto.Errors);
+                return UnprocessableEntity(result.Errors);
             }
 
-            return Ok(newDto.Result);
+            var newDto = result.Result;
+            return CreatedAtAction(nameof(GetById), new {id = newDto.Id}, newDto);
         }
 
         [HttpPut("{id}")]
@@ -80,7 +89,6 @@ namespace DigitalOwl.Api.Controllers
             }
 
             var dto = await _groupService.GetById(id);
-
             if (!dto.Succeeded)
             {
                 return BadRequest(dto.Errors);
@@ -89,14 +97,12 @@ namespace DigitalOwl.Api.Controllers
             _mapper.Map(model, dto.Result);
 
             var result = await _groupService.UpdateAsync(dto.Result, UserId);
-
             if (!result.Succeeded)
             {
                 return UnprocessableEntity(result.Errors);
             }
 
             var newDto = (DtoResponseResult<DtoGroup>) result;
-
             return Ok(newDto.Result);
         }
 

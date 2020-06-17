@@ -14,80 +14,83 @@ namespace DigitalOwl.Api.Controllers
     [Route("api/[controller]")]
     public class PollController : BaseController<PollController>
     {
-        private IPollService _pollService;
+        private readonly IPollService _pollService;
 
-        public PollController(IMapper mapper, ILogger<PollController> logger, IPollService pollService) : base(mapper, logger)
+        public PollController(IMapper mapper, ILogger<PollController> logger, IPollService pollService) : base(mapper,
+            logger)
         {
             _pollService = pollService;
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> getAll()
+        public async Task<IActionResult> GetAll()
         {
-            var _dto = await _pollService.GetAll();
-            return Ok(_dto.Result);
+            var dto = await _pollService.GetAll();
+            return Ok(dto.Result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> getById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var _dto = await _pollService.GetById(id);
+            var dto = await _pollService.GetById(id);
 
-            if (!_dto.Succeeded)
+            if (!dto.Succeeded)
             {
                 return UnprocessableEntity();
             }
-            return Ok(_dto.Result);
+
+            return Ok(dto.Result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> create([FromBody] CreatePoll x)
+        public async Task<IActionResult> Create([FromBody] CreatePoll x)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(x);
             }
 
-            var _dto = _mapper.Map<DtoPoll>(x);
-            _dto.Id = 0;
-            
-            var result = await _pollService.CreateAsync(_dto, 6);
+            var dto = _mapper.Map<DtoPoll>(x);
+            dto.Id = 0;
+
+            var result = await _pollService.CreateAsync(dto, UserId);
 
             if (!result.Succeeded)
             {
                 return UnprocessableEntity();
             }
 
-            return Ok(result.Result);
+            return CreatedAtAction(nameof(GetById), result.Result.Id, result.Result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> update([FromBody] CreatePoll x, [FromRoute] int id)
+        public async Task<IActionResult> Update([FromBody] CreatePoll model, [FromRoute] int id)
         {
             if (!ModelState.IsValid)
                 return UnprocessableEntity();
 
-            var _dto = await _pollService.GetById(id);
+            var dto = await _pollService.GetById(id);
 
-            if (!_dto.Succeeded)
+            if (!dto.Succeeded)
             {
                 return UnprocessableEntity();
             }
 
-            _mapper.Map(x, _dto.Result);
-            // TODO: userID
-            var updated = await _pollService.UpdateAsync(_dto.Result, 6);
+            _mapper.Map(model, dto.Result);
+            var updated = await _pollService.UpdateAsync(dto.Result, UserId);
+            
             if (!updated.Succeeded)
                 return UnprocessableEntity();
-            return Ok(((DtoResponseResult<DtoPoll>) updated).Result);
+            
+            return Ok(updated.Result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var result = await _pollService.Delete(id);
-            
-            if(!result.Succeeded)
+
+            if (!result.Succeeded)
                 return BadRequest();
 
             return NoContent();

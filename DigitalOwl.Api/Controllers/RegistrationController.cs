@@ -31,8 +31,9 @@ namespace DigitalOwl.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            // TODO: 
+            // TODO: map to DtoUser first 
             var userIdentity = _mapper.Map<User>(model);
+            userIdentity.Role = "Administrator"; // TODO FIX ME only temporary not for Production
 
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
 
