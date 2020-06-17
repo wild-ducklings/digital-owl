@@ -31,13 +31,32 @@ namespace DigitalOwl.Repository
         #endregion
 
         #region DbSet
-        
+
+        #region Poll
         /// <summary>
         /// Set Polls table in database.
         /// </summary>
         public DbSet<Poll> Polls { get; set;}
-
+        /// <summary>
+        /// Set PollQuestions table in database.
+        /// </summary>
+        public DbSet<PollQuestion> PollQuestions { get; set;}
+        
+        #endregion
+        
+        
+        
+        #region Group
+        /// <summary>
+        /// Set Groups table in database.
+        /// </summary>
         public DbSet<Group> Groups { get; set; }
+        /// <summary>
+        /// Set GroupMembers table in database.
+        /// </summary>
+        public DbSet<GroupMember> GroupMembers { get; set; }
+
+        #endregion
 
         #endregion
 
