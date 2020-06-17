@@ -10,7 +10,13 @@ namespace DigitalOwl.Api.Infrastructure
     {
         public ModelToDtoMapperProfile()
         {
+            // TODO make this map to convert first to DTO 
+            CreateMap<CreateUser, User>().ReverseMap();
+            // TODO make this map to convert first to DTO 
+            CreateMap<ViewUser, User>().ReverseMap();
+            
             CreateMap<CreatePoll, DtoPoll>().ReverseMap();
+            CreateMap<CreateGroup, DtoGroup>().ReverseMap();
         }
     }
 }
