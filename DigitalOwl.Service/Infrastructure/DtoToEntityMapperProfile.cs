@@ -14,8 +14,8 @@ namespace DigitalOwl.Service.Infrastructure
         /// </summary>
         public DtoToEntityMapperProfile()
         {
+            CreateMap<DtoGroup, Group>().ReverseMap();
             CreateMap<DtoPoll, Poll>().ReverseMap();
-            
         }
     }
 }

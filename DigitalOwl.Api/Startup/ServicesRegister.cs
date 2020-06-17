@@ -9,13 +9,13 @@ namespace DigitalOwl.Api.Startup
     /// </summary>
     public class ServicesRegister
     {
-
         /// <summary>
         /// Method register Services to Api
         /// </summary>
         /// <param name="services"></param>
         public static void Register(IServiceCollection services)
         {
+            services.AddScoped<IGroupService, GroupService>();
         services.AddScoped<IPollService, PollService>();
         }
     }

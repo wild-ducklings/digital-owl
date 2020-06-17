@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './component/App';
+import App from './App/App';
 import * as serviceWorker from './serviceWorker';
 import {CssBaseline, MuiThemeProvider} from "@material-ui/core";
-import {theme} from "./theme";
-import {store} from "./store";
+import {theme} from "./Theme/theme";
+import {store} from "./Store/store";
 import {Provider} from "react-redux";
 
 ReactDOM.render(

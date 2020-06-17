@@ -4,8 +4,8 @@ import {makeStyles} from "@material-ui/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {useDispatch} from "react-redux";
-import {toggleDrawerExported} from "./Sidebar";
-import {DropdownUserMenu} from "./DropdownUserMenu";
+import {toggleDrawerExported} from "../Sidebar/Sidebar";
+import {DropdownUserMenu} from "../DropdownMenu/DropdownUserMenu";
 
 const UseStyles = makeStyles((theme: Theme) =>
     createStyles({
