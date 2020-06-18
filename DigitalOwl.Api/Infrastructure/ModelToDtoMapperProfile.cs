@@ -1,5 +1,6 @@
 using AutoMapper;
 using DigitalOwl.Api.Model;
+using DigitalOwl.Api.Model.User;
 using DigitalOwl.Repository.Entity;
 using DigitalOwl.Repository.Entity.Identity;
 using DigitalOwl.Service.Dto;
@@ -13,7 +14,7 @@ namespace DigitalOwl.Api.Infrastructure
             // TODO make this map to convert first to DTO 
             CreateMap<CreateUser, User>().ReverseMap();
             // TODO make this map to convert first to DTO 
-            CreateMap<ViewUser, User>().ReverseMap();
+            CreateMap<LoginUser, User>().ReverseMap();
             
             CreateMap<CreatePoll, DtoPoll>().ReverseMap();
             CreateMap<CreateGroup, DtoGroup>().ReverseMap();

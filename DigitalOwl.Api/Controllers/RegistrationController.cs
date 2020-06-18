@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DigitalOwl.Api.Helpers;
 using DigitalOwl.Api.Model;
+using DigitalOwl.Api.Model.User;
 using DigitalOwl.Repository;
 using DigitalOwl.Repository.Entity.Identity;
 using Microsoft.AspNetCore.Identity;

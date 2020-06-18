@@ -58,6 +58,29 @@ namespace DigitalOwl.Service.Services
                 _mapper.Map<IEnumerable<DtoGroupMember>>(entities));
         }
 
+        public async Task<DtoResponseResult<IEnumerable<DtoGroupMember>>> GetAllByGroupId(int groupId)
+        {
+            var entities = await _unitOfWork.GroupMemberRepository.FindAllAsync(gm => gm.GroupId == groupId);
+            return DtoResponseResult<IEnumerable<DtoGroupMember>>.CreateResponse(
+                _mapper.Map<IEnumerable<DtoGroupMember>>(entities));
+        }
+
+
+        public async Task<DtoResponseResult<DtoGroupMember>> GetAllByGroupAndUserId(
+            int userId, int groupId)
+        {
+            var entity =
+                await _unitOfWork.GroupMemberRepository.FindAsync(gm => gm.GroupId == groupId && gm.UserId == userId);
+
+            if (entity == null)
+            {
+                return DtoResponseResult<DtoGroupMember>.FailedResponse("Group Member not found");
+            }
+
+            return DtoResponseResult<DtoGroupMember>.CreateResponse(_mapper.Map<DtoGroupMember>(entity));
+        }
+
+
         public async Task<DtoResponseResult<DtoGroupMember>> GetById(int id)
         {
             var entity = await _unitOfWork.GroupMemberRepository.FindAsync(gm => gm.Id == id);
@@ -99,6 +122,9 @@ namespace DigitalOwl.Service.Services
                 return DtoResponse.Failed("Group Member not found - task failed successfully");
             }
 
+            _unitOfWork.GroupMemberRepository.Delete(entity);
+            await _unitOfWork.SaveChangesAsync();
+            
             return DtoResponse.Success();
         }
     }

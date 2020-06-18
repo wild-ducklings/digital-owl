@@ -1,4 +1,4 @@
-namespace DigitalOwl.Api.Model
+namespace DigitalOwl.Api.Model.User
 {
     public class CreateUser
     {

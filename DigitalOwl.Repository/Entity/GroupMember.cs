@@ -20,12 +20,12 @@ namespace DigitalOwl.Repository.Entity
 
         #region Group
         /// <summary>
-        /// Foreign key of One-to-One relation with <class>Group</class>
+        /// Foreign key of Many-to-One relation with <class>Group</class>
         /// </summary>
         public int GroupId { get; set; }
         
         /// <summary>
-        /// Reference to <class>Group</class> as One-to-One relation
+        /// Reference to <class>Group</class> as Many-to-One relation
         /// </summary>
         [ForeignKey("GroupId")]
         public Group Group { get; set; }

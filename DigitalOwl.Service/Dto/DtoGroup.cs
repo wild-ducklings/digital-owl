@@ -14,10 +14,5 @@ namespace DigitalOwl.Service.Dto
         /// Name of Group
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Reference to GroupMember
-        /// </summary>
-        public DtoGroupMember GroupMember { get; set; }
     }
 }

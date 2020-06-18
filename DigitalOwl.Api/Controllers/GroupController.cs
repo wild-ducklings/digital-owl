@@ -74,7 +74,7 @@ namespace DigitalOwl.Api.Controllers
             {
                 return UnprocessableEntity(result.Errors);
             }
-
+            
             var newDto = result.Result;
             return CreatedAtAction(nameof(GetById), new {id = newDto.Id}, newDto);
         }

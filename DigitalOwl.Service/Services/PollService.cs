@@ -37,7 +37,6 @@ namespace DigitalOwl.Service.Services
         public async Task<DtoResponseResult<DtoPoll>> GetById(int pollId)
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == pollId);
-            //TODO:
             if (entity == null)
                 return DtoResponseResult<DtoPoll>.FailedResponse("Poll not found");
             return DtoResponseResult<DtoPoll>.CreateResponse(_mapper.Map<DtoPoll>(entity));

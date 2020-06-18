@@ -50,13 +50,13 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// Inverse prop of TimeStamps
         /// </summary>
         [InverseProperty("CreatedBy")]
-        public virtual IEnumerable<Group> GroupMembersCreated { get; set; }
+        public virtual IEnumerable<GroupMember> GroupMembersCreated { get; set; }
 
         /// <summary>
         /// Inverse prop of TimeStamps
         /// </summary>
         [InverseProperty("UpdatedBy")]
-        public virtual IEnumerable<Group> GroupMembersUpdated { get; set; }
+        public virtual IEnumerable<GroupMember> GroupMembersUpdated { get; set; }
 
         #endregion
     }

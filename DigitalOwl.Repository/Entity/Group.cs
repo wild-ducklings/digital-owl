@@ -21,9 +21,9 @@ namespace DigitalOwl.Repository.Entity
         public string Name { get; set; }
 
         /// <summary>
-        /// One-to-One relation With <class>GroupMember</class>
+        /// One-to-Many relation With <class>GroupMember</class>
         /// </summary>
-        public GroupMember GroupMember { get; set; }
+        public IEnumerable<GroupMember> GroupMembers { get; set; }
 
         #region Timestamp
 

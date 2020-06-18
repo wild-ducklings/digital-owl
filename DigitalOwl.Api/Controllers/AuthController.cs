@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DigitalOwl.Api.Helpers;
 using DigitalOwl.Api.Infrastructure.Auth;
 using DigitalOwl.Api.Model;
+using DigitalOwl.Api.Model.User;
 using DigitalOwl.Repository.Entity;
 using DigitalOwl.Repository.Entity.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -29,7 +30,7 @@ namespace DigitalOwl.Api.Controllers
 
         // POST api/auth/login
         [HttpPost("login")]
-        public async Task<IActionResult> Post([FromBody] ViewUser credentials)
+        public async Task<IActionResult> Post([FromBody] LoginUser credentials)
         {
             if (!ModelState.IsValid)
             {
