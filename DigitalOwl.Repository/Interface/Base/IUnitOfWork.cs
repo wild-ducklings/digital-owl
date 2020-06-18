@@ -17,20 +17,40 @@ namespace DigitalOwl.Repository.Interface.Base
         /// </summary>
         /// <returns></returns>
         public Task<int> SaveChangesAsync();
-        
+
+        #region PollAndRelated
+
+        #region IPollRepository
         /// <summary>
         /// Poll repository access point.
         /// </summary>
         public IPollRepository PollRepository { get; }
+        #endregion
 
+        #region IPollQuestionRepository
+        /// <summary>
+        /// Poll question access point.
+        /// </summary>
+        public IPollQuestionRepository PollQuestionRepository { get; }
+        #endregion
+        #endregion
+
+
+        #region GroupAndRelated
+
+        #region IGroupRepository
         /// <summary>
         /// Group repository access point.
         /// </summary>
         public IGroupRepository GroupRepository { get; }
+        #endregion
         
+        #region IGroupMemberRepository
         /// <summary>
         /// GroupMember repository access point.
         /// </summary>
         public IGroupMemberRepository GroupMemberRepository { get; }
+        #endregion
+        #endregion
     }
 }

@@ -76,6 +76,8 @@ namespace DigitalOwl.Repository.Repositories.Base
 
         #endregion
 
+        #region PollAndRelated
+
         #region PollRepository
 
         private IPollRepository _pollRepository;
@@ -90,7 +92,22 @@ namespace DigitalOwl.Repository.Repositories.Base
 
         #endregion
 
+        #region PollQuestionRepository
 
+        private IPollQuestionRepository _pollQuestionRepository;
+
+        /// <summary>
+        /// Poll question repository access point.
+        /// </summary>
+        public IPollQuestionRepository PollQuestionRepository
+        {
+            get { return _pollQuestionRepository ??= new PollQuestionRepository(_dbContext); }
+        }
+
+        #endregion
+        #endregion
+
+        #region GroupAndRelated
         #region GroupRepository
 
         private IGroupRepository _groupRepository;
@@ -104,9 +121,8 @@ namespace DigitalOwl.Repository.Repositories.Base
         }
 
         #endregion
-
-
-        #region GroupRepository
+        
+        #region GroupMemberRepository
 
         private IGroupMemberRepository _groupMemberRepository;
 
@@ -118,6 +134,7 @@ namespace DigitalOwl.Repository.Repositories.Base
             get { return _groupMemberRepository ??= new GroupMemberRepository(_dbContext); }
         }
 
+        #endregion
         #endregion
     }
 }

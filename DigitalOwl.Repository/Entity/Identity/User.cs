@@ -22,6 +22,21 @@ namespace DigitalOwl.Repository.Entity.Identity
 
         #region TimeStamps
 
+        #region PollQuestion
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("CreatedBy"))]
+        public virtual IEnumerable<PollQuestion> QuestionsCreated { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("UpdatedBy"))]
+        public virtual IEnumerable<PollQuestion> QuestionsUpdated { get; set; }
+        #endregion
+
+        #region Poll
         /// <summary>
         /// 
         /// </summary>
@@ -33,7 +48,9 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// </summary>
         [InverseProperty(("UpdatedBy"))]
         public virtual IEnumerable<Poll> PollsUpdated { get; set; }
-
+        #endregion
+        
+        #region Group
         /// <summary>
         /// Inverse prop of TimeStamps
         /// </summary>
@@ -45,7 +62,9 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// </summary>
         [InverseProperty("UpdatedBy")]
         public virtual IEnumerable<Group> GroupsUpdated { get; set; }
-
+        #endregion
+        
+        #region Group Members
         /// <summary>
         /// Inverse prop of TimeStamps
         /// </summary>
@@ -58,6 +77,7 @@ namespace DigitalOwl.Repository.Entity.Identity
         [InverseProperty("UpdatedBy")]
         public virtual IEnumerable<GroupMember> GroupMembersUpdated { get; set; }
 
+        #endregion
         #endregion
     }
 }
