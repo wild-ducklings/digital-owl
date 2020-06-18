@@ -13,17 +13,17 @@ namespace DigitalOwl.Service.Interface
     public interface IGroupService
     {
         /// <summary>
-        /// Create Entity from Dto async
+        /// Create Entity from Dto asynchronously.
         /// </summary>
         /// <param name="dto">New object</param>
-        /// <param name="userId">Id of user how create this object</param>
-        /// <returns>Response that contains new crate object</returns>
+        /// <param name="userId">Id of user creating this particular object.</param>
+        /// <returns>Response that contains new created object.</returns>
         Task<DtoResponseResult<DtoGroup>> CreateAsync(DtoGroup dto, int userId);
 
         /// <summary>
-        /// Method pull all items for db
+        /// Pull all items form the database.
         /// </summary>
-        /// <returns>list of dto</returns>
+        /// <returns>List of Dtos</returns>
         Task<DtoResponseResult<IEnumerable<DtoGroup>>> GetAll();
         Task<DtoResponseResult<DtoGroup>> GetById(int id);
 

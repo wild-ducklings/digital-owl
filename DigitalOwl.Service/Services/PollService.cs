@@ -13,7 +13,8 @@ namespace DigitalOwl.Service.Services
 {
     public class PollService : BaseService, IPollService
     {
-        public PollService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+        public PollService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork,
+            mapper)
         {
         }
 
@@ -25,22 +26,24 @@ namespace DigitalOwl.Service.Services
 
             var entityResponse = _unitOfWork.PollRepository.Create(entity);
             await _unitOfWork.SaveChangesAsync();
-            return DtoResponseResult<DtoPoll>.CreateResponse(_mapper.Map<DtoPoll>(entityResponse));
+            return DtoResponseResult<DtoPoll>.CreateResponse(
+                _mapper.Map<DtoPoll>(entityResponse));
         }
 
         public async Task<DtoResponseResult<IEnumerable<DtoPoll>>> GetAll()
         {
             var entities = await _unitOfWork.PollRepository.GetAllAsync();
-            return DtoResponseResult<IEnumerable<DtoPoll>>.CreateResponse(_mapper.Map<IEnumerable<DtoPoll>>(entities));
+            return DtoResponseResult<IEnumerable<DtoPoll>>.CreateResponse(
+                _mapper.Map<IEnumerable<DtoPoll>>(entities));
         }
 
         public async Task<DtoResponseResult<DtoPoll>> GetById(int pollId)
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == pollId);
-            //TODO:
             if (entity == null)
                 return DtoResponseResult<DtoPoll>.FailedResponse("Poll not found");
-            return DtoResponseResult<DtoPoll>.CreateResponse(_mapper.Map<DtoPoll>(entity));
+            return DtoResponseResult<DtoPoll>.CreateResponse(
+                _mapper.Map<DtoPoll>(entity));
         }
 
         public async Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId)
@@ -56,7 +59,8 @@ namespace DigitalOwl.Service.Services
 
             var entityResponse = _unitOfWork.PollRepository.Update(entity, dto.Id);
             await _unitOfWork.SaveChangesAsync();
-            return DtoResponseResult<DtoPoll>.CreateResponse(_mapper.Map<DtoPoll>(entityResponse));
+            return DtoResponseResult<DtoPoll>.CreateResponse(
+                _mapper.Map<DtoPoll>(entityResponse));
         }
 
         public async Task<DtoResponse> Delete(int pollId)
