@@ -5,16 +5,17 @@ using DigitalOwl.Service.Dto;
 namespace DigitalOwl.Service.Infrastructure
 {
     /// <summary>
-    /// 
+    /// Profile to Automapper that map Dto to Entity
     /// </summary>
     public class DtoToEntityMapperProfile : Profile
     {
         /// <summary>
-        /// 
+        /// Profile to Automapper that map Dto to Entity
         /// </summary>
         public DtoToEntityMapperProfile()
         {
             CreateMap<DtoGroup, Group>().ReverseMap();
+            CreateMap<DtoGroupMember, GroupMember>().ReverseMap();
             CreateMap<DtoPoll, Poll>().ReverseMap();
         }
     }

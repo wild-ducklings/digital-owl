@@ -7,7 +7,6 @@ using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Dto.Base;
 using DigitalOwl.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 
