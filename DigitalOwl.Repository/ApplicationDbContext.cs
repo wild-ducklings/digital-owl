@@ -32,11 +32,12 @@ namespace DigitalOwl.Repository
 
         #region DbSet
 
-        #region Poll
+        #region PollAndRelated
         /// <summary>
         /// Set Polls table in database.
         /// </summary>
         public DbSet<Poll> Polls { get; set;}
+        
         /// <summary>
         /// Set PollQuestions table in database.
         /// </summary>
@@ -45,8 +46,7 @@ namespace DigitalOwl.Repository
         #endregion
         
         
-        
-        #region Group
+        #region GroupAndRelated
         /// <summary>
         /// Set Groups table in database.
         /// </summary>
