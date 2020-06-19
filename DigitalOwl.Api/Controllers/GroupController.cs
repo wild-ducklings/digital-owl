@@ -18,17 +18,20 @@ namespace DigitalOwl.Api.Controllers
     public class GroupController : BaseController<GroupController>
     {
         private IGroupService _groupService;
+        private IGroupMemberService _groupMemberService;
 
         /// <summary>
-        /// Ctor
+        /// ctor
         /// </summary>
         /// <param name="mapper"></param>
         /// <param name="logger"></param>
         /// <param name="groupService"></param>
-        public GroupController(IMapper mapper, ILogger<GroupController> logger, IGroupService groupService)
-            : base(mapper, logger)
+        /// <param name="groupMemberService"></param>
+        public GroupController(IMapper mapper, ILogger<GroupController> logger, IGroupService groupService,
+                               IGroupMemberService groupMemberService) : base(mapper, logger)
         {
             _groupService = groupService;
+            _groupMemberService = groupMemberService;
         }
 
         [HttpGet("")]
@@ -66,7 +69,6 @@ namespace DigitalOwl.Api.Controllers
             }
 
             var dto = _mapper.Map<DtoGroup>(model);
-            dto.Id = 0;
 
             var result = await _groupService.CreateAsync(dto, UserId);
 
@@ -74,8 +76,9 @@ namespace DigitalOwl.Api.Controllers
             {
                 return UnprocessableEntity(result.Errors);
             }
-            
+
             var newDto = result.Result;
+            await _groupMemberService.CreateAsync(new DtoGroupMember {GroupId = newDto.Id, UserId = UserId}, UserId);
             return CreatedAtAction(nameof(GetById), new {id = newDto.Id}, newDto);
         }
 

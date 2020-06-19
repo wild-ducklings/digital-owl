@@ -11,8 +11,16 @@ using DigitalOwl.Service.Services.Base;
 
 namespace DigitalOwl.Service.Services
 {
+    /// <summary>
+    /// Group Service
+    /// </summary>
     public class GroupService : BaseService, IGroupService
     {
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="unitOfWork"></param>
+        /// <param name="mapper"></param>
         public GroupService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
         }
@@ -23,8 +31,10 @@ namespace DigitalOwl.Service.Services
             entity.CreatedById = userId;
             entity.CreatedDate = DateTime.UtcNow;
 
+
             var newEntity = _unitOfWork.GroupRepository.Create(entity);
 
+            
             await _unitOfWork.SaveChangesAsync();
 
             return DtoResponseResult<DtoGroup>.CreateResponse(_mapper.Map<DtoGroup>(newEntity));

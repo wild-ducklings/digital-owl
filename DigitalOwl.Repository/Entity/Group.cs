@@ -23,6 +23,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// One-to-Many relation With <class>GroupMember</class>
         /// </summary>
+        // [InverseProperty("Group")]
         public IEnumerable<GroupMember> GroupMembers { get; set; }
 
         #region Timestamp
@@ -51,7 +52,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// 
         /// </summary>
-        [ForeignKey("UpdatetedById")]
+        [ForeignKey("UpdatedById")]
         public User UpdatedBy { get; set; }
 
         /// <summary>

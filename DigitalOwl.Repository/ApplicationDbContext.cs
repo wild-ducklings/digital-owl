@@ -24,8 +24,15 @@ namespace DigitalOwl.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            foreach (var relationship in modelBuilder
+                                        .Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<Group>()
+                        .HasMany<GroupMember>(g => g.GroupMembers)
+                        .WithOne(gm => gm.Group)
+                        .HasForeignKey(gm => gm.GroupId)
+                        .OnDelete(DeleteBehavior.Cascade);
         }
 
         #endregion
@@ -33,24 +40,27 @@ namespace DigitalOwl.Repository
         #region DbSet
 
         #region PollAndRelated
+
         /// <summary>
         /// Set Polls table in database.
         /// </summary>
-        public DbSet<Poll> Polls { get; set;}
-        
+        public DbSet<Poll> Polls { get; set; }
+
         /// <summary>
         /// Set PollQuestions table in database.
         /// </summary>
-        public DbSet<PollQuestion> PollQuestions { get; set;}
-        
+        public DbSet<PollQuestion> PollQuestions { get; set; }
+
         #endregion
-        
-        
+
+
         #region GroupAndRelated
+
         /// <summary>
         /// Set Groups table in database.
         /// </summary>
         public DbSet<Group> Groups { get; set; }
+
         /// <summary>
         /// Set GroupMembers table in database.
         /// </summary>

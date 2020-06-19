@@ -27,7 +27,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// Reference to <class>Group</class> as Many-to-One relation
         /// </summary>
-        [ForeignKey("GroupId")]
+        // [ForeignKey("GroupId")]
         public Group Group { get; set; }
         
         #endregion
@@ -75,7 +75,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// 
         /// </summary>
-        [ForeignKey("UpdatetedById")]
+        [ForeignKey("UpdatedById")]
         public User UpdatedBy { get; set; }
 
         /// <summary>

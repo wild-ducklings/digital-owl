@@ -11,8 +11,6 @@ namespace DigitalOwl.Repository.Repositories.Base
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, IEntity
     {
-        #region .Ctor
-
         protected readonly IDbContext _dbContext;
 
         public GenericRepository(IDbContext dbContext)
@@ -20,61 +18,66 @@ namespace DigitalOwl.Repository.Repositories.Base
             _dbContext = dbContext;
         }
 
-        #endregion
-
-        #region Create
-
-        public TEntity Create(TEntity entity)
+        public IQueryable<TEntity> GetAll()
         {
-            _dbContext.Set<TEntity>().Add(entity);
-            return entity;
+            return _dbContext.Set<TEntity>();
         }
 
-        #endregion
 
-        #region Read
+        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _dbContext.Set<TEntity>().Where(predicate);
+        }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> predicate)
+        public virtual TEntity Get(int id)
         {
-            return await _dbContext.Set<TEntity>().Where(predicate).ToListAsync();
+            return _dbContext.Set<TEntity>().Find(id);
         }
 
+        public virtual async Task<TEntity> GetAsync(int id)
+        {
+            return await _dbContext.Set<TEntity>().FindAsync(id);
+        }
 
-        public async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> match)
+        public virtual TEntity Create(TEntity t)
+        {
+            _dbContext.Set<TEntity>().Add(t);
+            //_dbContext.SaveChanges();
+            return t;
+        }
+
+        public virtual IEnumerable<TEntity> Create(IEnumerable<TEntity> t)
+        {
+            _dbContext.Set<TEntity>().AddRange(t);
+            return t;
+        }
+
+        public virtual TEntity Find(Expression<Func<TEntity, bool>> match)
+        {
+            return _dbContext.Set<TEntity>().SingleOrDefault(match);
+        }
+
+        public virtual async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> match)
         {
             return await _dbContext.Set<TEntity>().SingleOrDefaultAsync(match);
         }
 
-        #endregion
-
-        #region Update
-
-        public TEntity Update(TEntity entity, object key)
+        public IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> match)
         {
-            if (entity == null)
-            {
-                return null;
-            }
-
-            var exist = _dbContext.Set<TEntity>().Find(key);
-            if (exist != null)
-            {
-                _dbContext.Entry(exist).CurrentValues.SetValues(entity);
-            }
-
-            return exist;
+            return _dbContext.Set<TEntity>().Where(match).ToList();
         }
 
-        #endregion
+        public async Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> match)
+        {
+            return await _dbContext.Set<TEntity>().Where(match).ToListAsync();
+        }
 
-        #region Delete
-
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
         }
@@ -84,6 +87,88 @@ namespace DigitalOwl.Repository.Repositories.Base
             _dbContext.Set<TEntity>().RemoveRange(entities);
         }
 
-        #endregion
+        public virtual TEntity Update(TEntity t, object key)
+        {
+            if (t == null)
+                return null;
+            TEntity exist = _dbContext.Set<TEntity>().Find(key);
+            if (exist != null)
+            {
+                _dbContext.Entry(exist).CurrentValues.SetValues(t);
+            }
+
+            return exist;
+        }
+
+        public int Count()
+        {
+            return _dbContext.Set<TEntity>().Count();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _dbContext.Set<TEntity>().CountAsync();
+        }
+
+        public virtual IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
+        {
+            IQueryable<TEntity> query = _dbContext.Set<TEntity>().Where(predicate);
+            return query;
+        }
+
+        public IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            IQueryable<TEntity> queryable = GetAll();
+            foreach (Expression<Func<TEntity, object>> includeProperty in includeProperties)
+            {
+                queryable = queryable.Include<TEntity, object>(includeProperty);
+            }
+
+            return queryable;
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _dbContext.Dispose();
+                }
+
+                this.disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public IEnumerable<TEntity> FindAll(List<Expression<Func<TEntity, bool>>> filters)
+        {
+            var queryable = _dbContext.Set<TEntity>().AsQueryable();
+            queryable = filters.Aggregate(queryable, (current, filter) => current.Where(filter));
+
+            return queryable.ToList();
+        }
+
+        public async Task<IEnumerable<TEntity>> FindAllAsync(List<Expression<Func<TEntity, bool>>> filters)
+        {
+            var queryable = _dbContext.Set<TEntity>().AsQueryable();
+            queryable = filters.Aggregate(queryable, (current, filter) => current.Where(filter));
+
+            return await queryable.ToListAsync();
+        }
+
+        public IQueryable<TEntity> FindBy(List<Expression<Func<TEntity, bool>>> predicate)
+        {
+            var queryable = _dbContext.Set<TEntity>().AsQueryable();
+            queryable = predicate.Aggregate(queryable, (current, filter) => current.Where(filter));
+            return queryable;
+        }
     }
 }
