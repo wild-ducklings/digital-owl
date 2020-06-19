@@ -40,6 +40,7 @@ namespace DigitalOwl.Repository.Entity
         /// Optional points available for 
         /// </summary>
         public int? Points { get; set; }
+        
         #region TimeStamps
         
         /// <summary>

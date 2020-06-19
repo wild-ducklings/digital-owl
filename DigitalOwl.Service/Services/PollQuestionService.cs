@@ -49,7 +49,7 @@ namespace DigitalOwl.Service.Services
         public async Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAll(int pollId)
         {
             var entities =
-                await _unitOfWork.PollQuestionRepository.FindAsync(
+                await _unitOfWork.PollQuestionRepository.FindAllAsync(
                     p => p.PollId == pollId);
             
             return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(

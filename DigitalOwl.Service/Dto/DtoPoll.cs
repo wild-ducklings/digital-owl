@@ -6,6 +6,7 @@ namespace DigitalOwl.Service.Dto
 {
     public class DtoPoll
     {
+
         /// <summary>
         /// Poll ID.
         /// </summary>

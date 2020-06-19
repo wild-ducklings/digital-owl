@@ -16,13 +16,14 @@ namespace DigitalOwl.Api.Controllers
     {
         private readonly IPollService _pollService;
 
-        public PollController(IMapper mapper, ILogger<PollController> logger, IPollService pollService) : base(mapper,
+        public PollController(IMapper mapper, ILogger<PollController> logger,
+                              IPollService pollService) : base(mapper,
             logger)
         {
             _pollService = pollService;
         }
 
-        [HttpGet("")]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var dto = await _pollService.GetAll();
@@ -36,13 +37,13 @@ namespace DigitalOwl.Api.Controllers
 
             if (!dto.Succeeded)
             {
-                return UnprocessableEntity();
+                return BadRequest();
             }
 
             return Ok(dto.Result);
         }
 
-        [HttpPost]
+        [HttpPost("")]
         public async Task<IActionResult> Create([FromBody] CreatePoll x)
         {
             if (!ModelState.IsValid)
@@ -60,7 +61,7 @@ namespace DigitalOwl.Api.Controllers
                 return UnprocessableEntity();
             }
 
-            return CreatedAtAction(nameof(GetById), result.Result.Id, result.Result);
+            return Ok(result.Result);
         }
 
         [HttpPut("{id}")]
@@ -78,10 +79,10 @@ namespace DigitalOwl.Api.Controllers
 
             _mapper.Map(model, dto.Result);
             var updated = await _pollService.UpdateAsync(dto.Result, UserId);
-            
+
             if (!updated.Succeeded)
                 return UnprocessableEntity();
-            
+
             return Ok(updated.Result);
         }
 
