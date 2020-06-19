@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Dto.Base;
@@ -25,8 +28,12 @@ namespace DigitalOwl.Service.Interface
         Task<DtoResponseResult<IEnumerable<DtoPoll>>> GetAll();
 
         Task<DtoResponseResult<DtoPoll>> GetById(int pollId);
+        
+        DtoResponseResult<IEnumerable<DtoPoll>> GetAllIncluding();
 
         Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId);
         Task<DtoResponse> Delete(int pollId);
+        
+        
     }
 }

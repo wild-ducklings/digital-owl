@@ -33,6 +33,8 @@ namespace DigitalOwl.Repository
                         .WithOne(gm => gm.Group)
                         .HasForeignKey(gm => gm.GroupId)
                         .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<PollQuestion>()
+                        .Ignore(b => b.Poll);
         }
 
         #endregion

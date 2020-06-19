@@ -24,9 +24,9 @@ namespace DigitalOwl.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            var dto = await _pollService.GetAll();
+            var dto =  _pollService.GetAllIncluding();
             return Ok(dto.Result);
         }
 

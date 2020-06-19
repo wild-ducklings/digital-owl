@@ -22,7 +22,7 @@ namespace DigitalOwl.Repository.Entity
         /// Poll that question belongs to.
         /// </summary>
         [ForeignKey("PollId")]
-        public Poll Poll { get; set; }
+        public virtual Poll Poll { get; set; }
 
         /// <summary>
         /// Id of a poll that question belongs to.

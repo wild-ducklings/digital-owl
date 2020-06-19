@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DigitalOwl.Repository.Entity;
 using DigitalOwl.Repository.Interface.Base;
 using DigitalOwl.Service.Dto;
@@ -44,6 +46,13 @@ namespace DigitalOwl.Service.Services
                 return DtoResponseResult<DtoPoll>.FailedResponse("Poll not found");
             return DtoResponseResult<DtoPoll>.CreateResponse(
                 _mapper.Map<DtoPoll>(entity));
+        }
+
+        public DtoResponseResult<IEnumerable<DtoPoll>> GetAllIncluding()
+        {
+            var polls = _unitOfWork.PollRepository.GetAllIncluding(p => p.PollQuestions);
+            var entities = _mapper.Map<IEnumerable<Poll> ,IEnumerable<DtoPoll>>(polls);
+            return DtoResponseResult<IEnumerable<DtoPoll>>.CreateResponse(entities);
         }
 
         public async Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId)
