@@ -104,8 +104,8 @@ namespace DigitalOwl.Api.Controllers
                 return UnprocessableEntity(result.Errors);
             }
 
-            var newDto = (DtoResponseResult<DtoGroup>) result;
-            return Ok(newDto.Result);
+            var newDto = result.Result;
+            return Ok(newDto);
         }
 
         [HttpDelete("{id}")]

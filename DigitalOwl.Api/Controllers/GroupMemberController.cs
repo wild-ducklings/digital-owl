@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DigitalOwl.Api.Controllers.Base;
@@ -29,7 +30,7 @@ namespace DigitalOwl.Api.Controllers
         // TODO delete it only debug never use it on production
         // [Obsolete("Debug only")]
         [HttpGet("member")]
-        public async Task<IActionResult> GetAllByGroupId()
+        public async Task<IActionResult> GetAll()
         {
             var dtos = await _groupMemberService.GetAll();
             return Ok(dtos.Result);
@@ -78,7 +79,13 @@ namespace DigitalOwl.Api.Controllers
             return NoContent();
         }
 
-        // path dont contains id 'cause use delete by User  
+        // path dont contains id 'cause use delete by User 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
         [HttpDelete("{groupId}/member")]
         public async Task<IActionResult> Delete([FromBody] ViewUser model, [FromRoute] int groupId)
         {
@@ -95,7 +102,26 @@ namespace DigitalOwl.Api.Controllers
             {
                 return BadRequest(result.Errors);
             }
-            
+
+            var dtos = await _groupMemberService.GetAllByGroupId(groupId);
+            if (!dtos.Succeeded)
+            {
+                return BadRequest(dtos.Errors);
+            }
+
+            // if number of GroupMember in Group is equal 0 
+            // Group must be deleted 
+            if (dtos.Result.Any())
+            {
+                return NoContent();
+            }
+
+            result = await _groupMemberService.Delete(dto.Result.Id);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
             return NoContent();
         }
     }
