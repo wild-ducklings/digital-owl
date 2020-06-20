@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigitalOwl.Migrations.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200620044508_0001")]
+    [Migration("20200620202807_0001")]
     partial class _0001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,6 +88,47 @@ namespace DigitalOwl.Migrations.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("GroupMembers");
+                });
+
+            modelBuilder.Entity("DigitalOwl.Repository.Entity.GroupMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GroupMessage");
                 });
 
             modelBuilder.Entity("DigitalOwl.Repository.Entity.Identity.User", b =>
@@ -418,6 +459,32 @@ namespace DigitalOwl.Migrations.Migrations
 
                     b.HasOne("DigitalOwl.Repository.Entity.Identity.User", "User")
                         .WithMany("GroupMembers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DigitalOwl.Repository.Entity.GroupMessage", b =>
+                {
+                    b.HasOne("DigitalOwl.Repository.Entity.Identity.User", "CreatedBy")
+                        .WithMany("GroupMessagesCreated")
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DigitalOwl.Repository.Entity.Group", "Group")
+                        .WithMany("GroupMessages")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DigitalOwl.Repository.Entity.Identity.User", "UpdatedBy")
+                        .WithMany("GroupMessagesUpdated")
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DigitalOwl.Repository.Entity.Identity.User", "User")
+                        .WithMany("GroupMessages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

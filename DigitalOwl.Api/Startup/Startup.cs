@@ -1,8 +1,8 @@
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using AutoMapper;
 using DigitalOwl.Api.Helpers;
 using DigitalOwl.Api.Infrastructure;
@@ -88,10 +88,12 @@ namespace DigitalOwl.Api.Startup
             services.AddControllers();
 
             services.AddCors();
-
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "My API", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "My API", Version = "v1"
+                });
                 // xml comments
                 // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -124,13 +126,11 @@ namespace DigitalOwl.Api.Startup
                     c.RoutePrefix = string.Empty;
                 });
             }
-            // app.UseHttpsRedirection();
 
+// app.UseHttpsRedirection();
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }

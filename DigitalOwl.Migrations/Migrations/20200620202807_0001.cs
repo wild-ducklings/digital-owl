@@ -257,6 +257,49 @@ namespace DigitalOwl.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GroupMessage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<string>(nullable: true),
+                    GroupId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
+                    CreatedById = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedById = table.Column<int>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GroupMessage", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GroupMessage_AspNetUsers_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_GroupMessage_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GroupMessage_AspNetUsers_UpdatedById",
+                        column: x => x.UpdatedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_GroupMessage_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PollQuestions",
                 columns: table => new
                 {
@@ -373,6 +416,26 @@ namespace DigitalOwl.Migrations.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_GroupMessage_CreatedById",
+                table: "GroupMessage",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroupMessage_GroupId",
+                table: "GroupMessage",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroupMessage_UpdatedById",
+                table: "GroupMessage",
+                column: "UpdatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroupMessage_UserId",
+                table: "GroupMessage",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Groups_CreatedById",
                 table: "Groups",
                 column: "CreatedById");
@@ -432,6 +495,9 @@ namespace DigitalOwl.Migrations.Migrations
 
             migrationBuilder.DropTable(
                 name: "GroupMembers");
+
+            migrationBuilder.DropTable(
+                name: "GroupMessage");
 
             migrationBuilder.DropTable(
                 name: "PollAnswer");
