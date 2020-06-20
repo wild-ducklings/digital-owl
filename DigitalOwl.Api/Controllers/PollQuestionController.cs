@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -76,6 +77,34 @@ namespace DigitalOwl.Api.Controllers
 
             return Ok(result.Result);
         }
+
+        [HttpPost("{PollId}/questionlist")]
+        public async Task<IActionResult> Create([FromBody] IEnumerable<CreatePollQuestion> x,
+                                                [FromRoute] int pollId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(x);
+            }
+            
+            var dtos = _mapper.Map<IEnumerable<DtoPollQuestion>>(x);
+
+            foreach (var e in dtos)
+            {
+                e.Id = 0;
+                e.PollId = pollId;
+            }
+            
+            var result = await _pollQuestionService.CreateAsync(dtos, UserId);
+            
+            if (!result.Succeeded)
+            {
+                return UnprocessableEntity();
+            }
+
+            return Ok(result.Result);
+        }
+        
 
         [HttpPut("questions/{id}")]
         public async Task<IActionResult> Update([FromBody] CreatePollQuestion model, [FromRoute] int id)

@@ -3,7 +3,6 @@ using AutoMapper;
 using DigitalOwl.Api.Controllers.Base;
 using DigitalOwl.Api.Model;
 using DigitalOwl.Service.Dto;
-using DigitalOwl.Service.Dto.Base;
 using DigitalOwl.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,8 +16,7 @@ namespace DigitalOwl.Api.Controllers
         private readonly IPollService _pollService;
 
         public PollController(IMapper mapper, ILogger<PollController> logger,
-                              IPollService pollService) : base(mapper,
-            logger)
+                              IPollService pollService) : base(mapper, logger)
         {
             _pollService = pollService;
         }
@@ -26,7 +24,7 @@ namespace DigitalOwl.Api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var dto =  _pollService.GetAllIncluding();
+            var dto =  _pollService.GetAll();
             return Ok(dto.Result);
         }
 

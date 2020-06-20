@@ -21,7 +21,7 @@ namespace DigitalOwl.Service.Services
             unitOfWork, mapper)
         {
         }
-        
+
         /// <summary>
         /// Create a single question.
         /// </summary>
@@ -40,7 +40,24 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<DtoPollQuestion>.CreateResponse(
                 _mapper.Map<DtoPollQuestion>(entityResponse));
         }
-    
+
+        public async Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> CreateAsync(
+            IEnumerable<DtoPollQuestion> collection, int userId)
+        {
+            var entities = _mapper.Map<IEnumerable<PollQuestion>>(collection);
+            foreach (var e in entities)
+            {
+                e.CreatedById = userId;
+                e.CreatedDate = DateTime.UtcNow;
+            }
+
+            var entitiesResponse = _unitOfWork.PollQuestionRepository.Create(entities);
+            await _unitOfWork.SaveChangesAsync();
+            
+            return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(
+                _mapper.Map<IEnumerable<DtoPollQuestion>>(entitiesResponse));
+        }
+
         /// <summary>
         /// Get whole question set from the particular poll.
         /// </summary>
@@ -51,10 +68,11 @@ namespace DigitalOwl.Service.Services
             var entities =
                 await _unitOfWork.PollQuestionRepository.FindAllAsync(
                     p => p.PollId == pollId);
-            
+
             return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(
                 _mapper.Map<IEnumerable<DtoPollQuestion>>(entities));
         }
+
         /// <summary>
         /// Get all available questions (not sure if it's going to be useful).
         /// </summary>
@@ -65,7 +83,7 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(
                 _mapper.Map<IEnumerable<DtoPollQuestion>>(entities));
         }
-        
+
         /// <summary>
         /// Find a question with given Id.
         /// </summary>
@@ -78,11 +96,11 @@ namespace DigitalOwl.Service.Services
                     p.Id == pollQuestionId);
             if (entity == null)
                 return DtoResponseResult<DtoPollQuestion>
-                    .FailedResponse("Poll question not found");
+                   .FailedResponse("Poll question not found");
             return DtoResponseResult<DtoPollQuestion>.CreateResponse(
                 _mapper.Map<DtoPollQuestion>(entity));
         }
-        
+
         /// <summary>
         /// Updates a particular question.
         /// </summary>
@@ -106,7 +124,7 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<DtoPollQuestion>.CreateResponse(
                 _mapper.Map<DtoPollQuestion>(entityResponse));
         }
-        
+
         /// <summary>
         /// Delete the question of given Id.
         /// </summary>
@@ -114,7 +132,8 @@ namespace DigitalOwl.Service.Services
         /// <returns>Success/failure message.</returns>
         public async Task<DtoResponse> Delete(int pollQuestionId)
         {
-            var entity = await _unitOfWork.PollQuestionRepository.FindAsync(p => p.Id == pollQuestionId);
+            var entity =
+                await _unitOfWork.PollQuestionRepository.FindAsync(p => p.Id == pollQuestionId);
 
             if (entity == null)
                 return DtoResponse.Failed("Poll question not found");

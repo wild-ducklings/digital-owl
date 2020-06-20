@@ -18,8 +18,7 @@ namespace DigitalOwl.Service.Dto
         /// <summary>
         /// Set of poll questions.
         /// </summary>
-        public IEnumerable<PollQuestion> PollQuestions { get; set; }
-        /// TODO Found it  ^ here 
+        public IEnumerable<DtoPollQuestion> PollQuestions { get; set; }
         /// <summary>
         /// Optional poll time limit.
         /// </summary>

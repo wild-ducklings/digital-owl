@@ -48,13 +48,6 @@ namespace DigitalOwl.Service.Services
                 _mapper.Map<DtoPoll>(entity));
         }
 
-        public DtoResponseResult<IEnumerable<DtoPoll>> GetAllIncluding()
-        {
-            var polls = _unitOfWork.PollRepository.GetAllIncluding(p => p.PollQuestions);
-            var entities = _mapper.Map<IEnumerable<Poll> ,IEnumerable<DtoPoll>>(polls);
-            return DtoResponseResult<IEnumerable<DtoPoll>>.CreateResponse(entities);
-        }
-
         public async Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId)
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == dto.Id);

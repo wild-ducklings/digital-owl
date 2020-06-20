@@ -28,8 +28,6 @@ namespace DigitalOwl.Service.Interface
         Task<DtoResponseResult<IEnumerable<DtoPoll>>> GetAll();
 
         Task<DtoResponseResult<DtoPoll>> GetById(int pollId);
-        
-        DtoResponseResult<IEnumerable<DtoPoll>> GetAllIncluding();
 
         Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId);
         Task<DtoResponse> Delete(int pollId);
