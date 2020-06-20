@@ -105,9 +105,11 @@ namespace DigitalOwl.Repository.Repositories.Base
         }
 
         #endregion
+
         #endregion
 
         #region GroupAndRelated
+
         #region GroupRepository
 
         private IGroupRepository _groupRepository;
@@ -121,7 +123,7 @@ namespace DigitalOwl.Repository.Repositories.Base
         }
 
         #endregion
-        
+
         #region GroupMemberRepository
 
         private IGroupMemberRepository _groupMemberRepository;
@@ -135,6 +137,21 @@ namespace DigitalOwl.Repository.Repositories.Base
         }
 
         #endregion
+
+        #region GroupMemberRepository
+
+        private IGroupMessageRepository _groupMessageRepository;
+
+        /// <summary>
+        /// GroupMessage repository access point.
+        /// </summary>
+        public IGroupMessageRepository GroupMessageRepository
+        {
+            get { return _groupMessageRepository ??= new GroupMessageRepository(_dbContext); }
+        }
+
+        #endregion
+
         #endregion
     }
 }

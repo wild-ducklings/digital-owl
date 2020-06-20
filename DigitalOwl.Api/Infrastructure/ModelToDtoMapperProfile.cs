@@ -15,9 +15,11 @@ namespace DigitalOwl.Api.Infrastructure
             CreateMap<CreateUser, User>().ReverseMap();
             // TODO make this map to convert first to DTO 
             CreateMap<LoginUser, User>().ReverseMap();
+
             CreateMap<CreateGroup, DtoGroup>().ReverseMap();
-            
-            
+            CreateMap<CreateGroupMessage, DtoGroupMessage>().ReverseMap();
+
+
             CreateMap<CreatePoll, DtoPoll>().ReverseMap();
             CreateMap<CreatePollQuestion, DtoPollQuestion>().ReverseMap();
         }

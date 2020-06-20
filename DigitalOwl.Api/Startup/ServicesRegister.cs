@@ -17,6 +17,7 @@ namespace DigitalOwl.Api.Startup
         {
             services.AddScoped<IGroupService, GroupService>();
             services.AddScoped<IGroupMemberService, GroupMemberService>();
+            services.AddScoped<IGroupMessageService, GroupMessageService>();
             services.AddScoped<IPollService, PollService>();
             services.AddScoped<IPollQuestionService, PollQuestionService>();
         }

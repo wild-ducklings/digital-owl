@@ -10,8 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalOwl.Api.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class RegistrationController : Controller
+    public class RegistrationController : ControllerBase
     {
          private readonly ApplicationDbContext _appDbContext;
         private readonly UserManager<User> _userManager;

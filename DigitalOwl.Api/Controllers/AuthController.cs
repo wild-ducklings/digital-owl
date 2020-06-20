@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 namespace DigitalOwl.Api.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace DigitalOwl.Api.Controllers
         private readonly JwtIssuerOptions _jwtOptions;
 
         public AuthController(UserManager<User> userManager, IJwtFactory jwtFactory,
-            IOptions<JwtIssuerOptions> jwtOptions)
+                              IOptions<JwtIssuerOptions> jwtOptions)
         {
             _userManager = userManager;
             _jwtFactory = jwtFactory;

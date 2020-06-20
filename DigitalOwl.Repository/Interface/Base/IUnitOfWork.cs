@@ -51,6 +51,13 @@ namespace DigitalOwl.Repository.Interface.Base
         /// </summary>
         public IGroupMemberRepository GroupMemberRepository { get; }
         #endregion
+
+        #region IGroupMessageRepository
+        /// <summary>
+        /// GroupMember repository access point.
+        /// </summary>
+        public IGroupMessageRepository GroupMessageRepository { get; }
+        #endregion
         #endregion
     }
 }

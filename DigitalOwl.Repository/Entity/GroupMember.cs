@@ -29,7 +29,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// Reference to <class>Group</class> as Many-to-One relation
         /// </summary>
-        // [ForeignKey("GroupId")]
+        [ForeignKey("GroupId")]
         public virtual Group Group { get; set; }
 
         #endregion

@@ -34,6 +34,12 @@ namespace DigitalOwl.Repository
                         .HasForeignKey(gm => gm.GroupId)
                         .OnDelete(DeleteBehavior.Cascade);
             
+            modelBuilder.Entity<Group>()
+                        .HasMany<GroupMessage>(g => g.GroupMessages)
+                        .WithOne(gm => gm.Group)
+                        .HasForeignKey(gm => gm.GroupId)
+                        .OnDelete(DeleteBehavior.Cascade);
+            
             modelBuilder.Entity<PollQuestion>()
                         .Ignore(b => b.Poll);
         }

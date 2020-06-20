@@ -20,9 +20,12 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// </summary>
         public virtual IEnumerable<GroupMember> GroupMembers { get; set; }
 
+        public virtual IEnumerable<GroupMessage> GroupMessages { get; set; }
+
         #region TimeStamps
 
         #region PollQuestion
+
         /// <summary>
         /// 
         /// </summary>
@@ -34,9 +37,11 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// </summary>
         [InverseProperty(("UpdatedBy"))]
         public virtual IEnumerable<PollQuestion> QuestionsUpdated { get; set; }
+
         #endregion
 
         #region Poll
+
         /// <summary>
         /// 
         /// </summary>
@@ -48,9 +53,11 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// </summary>
         [InverseProperty(("UpdatedBy"))]
         public virtual IEnumerable<Poll> PollsUpdated { get; set; }
+
         #endregion
-        
+
         #region Group
+
         /// <summary>
         /// Inverse prop of TimeStamps
         /// </summary>
@@ -62,9 +69,11 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// </summary>
         [InverseProperty("UpdatedBy")]
         public virtual IEnumerable<Group> GroupsUpdated { get; set; }
+
         #endregion
-        
-        #region Group Members
+
+        #region GroupMembers
+
         /// <summary>
         /// Inverse prop of TimeStamps
         /// </summary>
@@ -78,6 +87,23 @@ namespace DigitalOwl.Repository.Entity.Identity
         public virtual IEnumerable<GroupMember> GroupMembersUpdated { get; set; }
 
         #endregion
+
+        #region GroupMessage
+
+        /// <summary>
+        /// Inverse prop of TimeStamps
+        /// </summary>
+        [InverseProperty("CreatedBy")]
+        public virtual IEnumerable<GroupMessage> GroupMessagesCreated { get; set; }
+
+        /// <summary>
+        /// Inverse prop of TimeStamps
+        /// </summary>
+        [InverseProperty("UpdatedBy")]
+        public virtual IEnumerable<GroupMessage> GroupMessagesUpdated { get; set; }
+
+        #endregion
+
         #endregion
     }
 }
