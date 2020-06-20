@@ -14,26 +14,29 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// Id of GroupMember
         /// </summary>
-        [Key] public int Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         #region ForeignKey
 
         #region Group
+
         /// <summary>
         /// Foreign key of Many-to-One relation with <class>Group</class>
         /// </summary>
         public int GroupId { get; set; }
-        
+
         /// <summary>
         /// Reference to <class>Group</class> as Many-to-One relation
         /// </summary>
         // [ForeignKey("GroupId")]
-        public Group Group { get; set; }
-        
+        public virtual Group Group { get; set; }
+
         #endregion
-        
-        
+
+
         #region User
+
         /// <summary>
         /// Foreign key of Many-to-One relation with <class>User</class>
         /// </summary>
@@ -43,12 +46,12 @@ namespace DigitalOwl.Repository.Entity
         /// Reference to <class>User</class> as Many-to-One relation
         /// </summary>
         [ForeignKey("UserId")]
-        public User User { get; set; }
-        
+        public virtual User User { get; set; }
+
         #endregion
-        
+
         #endregion
-        
+
         #region Timestamp
 
         /// <summary>

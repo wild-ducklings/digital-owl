@@ -37,7 +37,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// Available answers for particular question.
         /// </summary>
-        public IEnumerable<PollAnswer> QuestionAnswers { get; set; }
+        public virtual IEnumerable<PollAnswer> QuestionAnswers { get; set; }
 
         /// <summary>
         /// Optional question time limit.

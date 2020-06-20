@@ -36,7 +36,7 @@ namespace DigitalOwl.Api.Startup
     public class Startup
     {
         private readonly IConfiguration _configuration;
-        
+
         /// <summary>
         /// Ctor nothing intresting
         /// </summary>
@@ -46,7 +46,7 @@ namespace DigitalOwl.Api.Startup
             _configuration = configuration;
         }
 
-        
+
         private static void ConfigureMapper(IServiceCollection services)
         {
             var mappingConfig = new MapperConfiguration(mc =>
@@ -65,8 +65,8 @@ namespace DigitalOwl.Api.Startup
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(x =>
-                x.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
+            services.AddDbContext<ApplicationDbContext>(opt =>
+                opt.UseLazyLoadingProxies().UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("DigitalOwl.Migrations")));
 
             services.AddSingleton<IJwtFactory, JwtFactory>();
@@ -97,7 +97,7 @@ namespace DigitalOwl.Api.Startup
                 // c.IncludeXmlComments(xmlPath);
             });
         }
-        
+
         /// <summary>
         /// Configure App Middleware 
         /// </summary>

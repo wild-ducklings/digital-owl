@@ -18,7 +18,7 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// <summary>
         /// One-to-Many relation With <class>GroupMember</class>
         /// </summary>
-        public IEnumerable<GroupMember> GroupMembers { get; set; }
+        public virtual IEnumerable<GroupMember> GroupMembers { get; set; }
 
         #region TimeStamps
 
