@@ -12,7 +12,7 @@
 8. Write unit test.
 #### Service phase
 1. Create Dto model in Service [syntax: Dto<Name>].
-2. Add map for AutoMapper in Infrastructure/DtoToEntityMapperProfile
+2. Add map for AutoMapper in Infrastructure/DtoToEntityMapperProfile.
 3. Create Interface [syntax: I<Name>Service].
 4. Implement Service. It must inherit BaseService [syntax: <Name>Service].
 5. Register this new Service in Api/Startup/ServicesRegister

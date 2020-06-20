@@ -21,7 +21,7 @@ namespace DigitalOwl.Repository.Entity
         public virtual PollQuestion PollQuestion { get; set; }
 
         /// <summary>
-        /// Id of a poll question that question belongs to.
+        /// Id of a poll question that answer belongs to.
         /// </summary>
         public int PollQuestionId { get; set; }
         

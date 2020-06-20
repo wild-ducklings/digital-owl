@@ -19,6 +19,7 @@ namespace DigitalOwl.Service.Infrastructure
             CreateMap<DtoGroupMessage, GroupMessage>().ReverseMap();
             CreateMap<DtoPoll, Poll>().ReverseMap();
             CreateMap<DtoPollQuestion, PollQuestion>().ReverseMap();
+            CreateMap<DtoPollAnswer, PollAnswer>().ReverseMap();
         }
     }
 }

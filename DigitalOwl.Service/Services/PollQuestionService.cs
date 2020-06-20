@@ -17,6 +17,11 @@ namespace DigitalOwl.Service.Services
     /// </summary>
     public class PollQuestionService : BaseService, IPollQuestionService
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="unitOfWork"></param>
+        /// <param name="mapper"></param>
         public PollQuestionService(IUnitOfWork unitOfWork, IMapper mapper) : base(
             unitOfWork, mapper)
         {
@@ -41,6 +46,12 @@ namespace DigitalOwl.Service.Services
                 _mapper.Map<DtoPollQuestion>(entityResponse));
         }
 
+        /// <summary>
+        /// Create set of questions.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public async Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> CreateAsync(
             IEnumerable<DtoPollQuestion> collection, int userId)
         {
