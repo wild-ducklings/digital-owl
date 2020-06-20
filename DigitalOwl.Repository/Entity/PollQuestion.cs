@@ -45,7 +45,7 @@ namespace DigitalOwl.Repository.Entity
         public DateTime? TimeLimit { get; set; }
 
         /// <summary>
-        /// Optional points available for 
+        /// Optional points available for question.
         /// </summary>
         public int? Points { get; set; }
 

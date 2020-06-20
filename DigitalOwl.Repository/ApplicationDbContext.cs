@@ -34,8 +34,23 @@ namespace DigitalOwl.Repository
                         .HasForeignKey(gm => gm.GroupId)
                         .OnDelete(DeleteBehavior.Cascade);
             
+            modelBuilder.Entity<Poll>()
+                        .HasMany<PollQuestion>(g => g.PollQuestions)
+                        .WithOne(gm => gm.Poll)
+                        .HasForeignKey(gm => gm.PollId)
+                        .OnDelete(DeleteBehavior.Cascade);
+            
             modelBuilder.Entity<PollQuestion>()
                         .Ignore(b => b.Poll);
+            
+            modelBuilder.Entity<PollQuestion>()
+                        .HasMany<PollAnswer>(g => g.QuestionAnswers)
+                        .WithOne(gm => gm.PollQuestion)
+                        .HasForeignKey(gm => gm.PollQuestionId)
+                        .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<PollAnswer>()
+                        .Ignore(b => b.PollQuestion);
         }
 
         #endregion
@@ -53,6 +68,11 @@ namespace DigitalOwl.Repository
         /// Set PollQuestions table in database.
         /// </summary>
         public DbSet<PollQuestion> PollQuestions { get; set; }
+        
+        /// <summary>
+        /// Set PollAnswers table in database.
+        /// </summary>
+        public DbSet<PollAnswer> PollAnswer { get; set; }
 
         #endregion
 
