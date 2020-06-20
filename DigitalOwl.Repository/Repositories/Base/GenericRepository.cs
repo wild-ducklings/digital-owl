@@ -22,8 +22,7 @@ namespace DigitalOwl.Repository.Repositories.Base
         {
             return _dbContext.Set<TEntity>();
         }
-
-
+        
         public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbContext.Set<TEntity>().Where(predicate);
@@ -47,7 +46,6 @@ namespace DigitalOwl.Repository.Repositories.Base
         public virtual TEntity Create(TEntity t)
         {
             _dbContext.Set<TEntity>().Add(t);
-            //_dbContext.SaveChanges();
             return t;
         }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DigitalOwl.Repository.Entity;
 using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Dto.Base;
 
@@ -15,11 +16,15 @@ namespace DigitalOwl.Service.Interface
         /// <returns>Response that contains new crate object</returns>
         Task<DtoResponseResult<DtoPollQuestion>> CreateAsync(DtoPollQuestion dto, int userId);
 
+        Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> CreateAsync(
+            IEnumerable<DtoPollQuestion> collection, int userId);
+
         /// <summary>
         /// Pull all items form the database.
         /// </summary>
         /// <returns>List of Dtos</returns>
         Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAll(int pollId);
+
         /// <summary>
         /// </summary>
         /// <returns></returns>

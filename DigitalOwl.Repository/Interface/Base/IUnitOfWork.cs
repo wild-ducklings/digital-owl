@@ -33,6 +33,16 @@ namespace DigitalOwl.Repository.Interface.Base
         /// </summary>
         public IPollQuestionRepository PollQuestionRepository { get; }
         #endregion
+
+        #region PollAnswer
+    
+        /// <summary>
+        /// Poll question access point.
+        /// </summary>
+        public IPollAnswerRepository PollAnswerRepository { get; }
+
+        #endregion
+        
         #endregion
 
 
