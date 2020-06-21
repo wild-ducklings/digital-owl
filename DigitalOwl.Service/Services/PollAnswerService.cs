@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using DigitalOwl.Repository.Entity;
-using DigitalOwl.Repository.Interface;
 using DigitalOwl.Repository.Interface.Base;
 using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Dto.Base;

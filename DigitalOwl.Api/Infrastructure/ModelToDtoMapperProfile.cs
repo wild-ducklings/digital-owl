@@ -22,6 +22,7 @@ namespace DigitalOwl.Api.Infrastructure
 
             CreateMap<CreatePoll, DtoPoll>().ReverseMap();
             CreateMap<CreatePollQuestion, DtoPollQuestion>().ReverseMap();
+            CreateMap<CreatePollAnswer, DtoPollAnswer>().ReverseMap();
         }
     }
 }

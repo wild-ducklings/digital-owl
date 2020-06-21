@@ -21,7 +21,7 @@ namespace DigitalOwl.Service.Dto
         /// <summary>
         /// Available answers for particular question.
         /// </summary>
-        public IEnumerable<PollAnswer> QuestionAnswers { get; set; }
+        public IEnumerable<DtoPollAnswer> QuestionAnswers { get; set; }
         /// <summary>
         /// Optional question time limit.
         /// </summary>

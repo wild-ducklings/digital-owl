@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DigitalOwl.Api.Controllers.Base;
 using DigitalOwl.Api.Model;
 using DigitalOwl.Repository.Entity;
-using DigitalOwl.Repository.Repositories.Base;
 using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +18,9 @@ namespace DigitalOwl.Api.Controllers
         private readonly IPollQuestionService _pollQuestionService;
         private readonly IPollService _pollService;
 
-
-        public PollQuestionController(IMapper mapper, ILogger<PollQuestion> logger, IPollQuestionService pollQuestionService, IPollService pollService) : base(mapper, logger)
+        public PollQuestionController(IMapper mapper, ILogger<PollQuestion> logger, IPollQuestionService pollQuestionService) : base(mapper, logger)
         {
             _pollQuestionService = pollQuestionService;
-            _pollService = pollService;
         }
 
         [HttpGet("questions")]
@@ -37,7 +33,6 @@ namespace DigitalOwl.Api.Controllers
         [HttpGet("{PollId}/questions")]
         public async Task<IActionResult> GetAll([FromRoute] int pollId)
         {
-            
             var dtos = await _pollQuestionService.GetAll(pollId);
             return Ok(dtos.Result);
         }
@@ -58,6 +53,12 @@ namespace DigitalOwl.Api.Controllers
         [HttpPost("{PollId}/questions")]
         public async Task<IActionResult> Create([FromBody] CreatePollQuestion x, [FromRoute] int pollId)
         {
+            var resultP = await _pollService.GetById(pollId);
+            if (!resultP.Succeeded)
+            {
+                return BadRequest(resultP.Errors);
+            }
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(x);
@@ -78,10 +79,16 @@ namespace DigitalOwl.Api.Controllers
             return Ok(result.Result);
         }
 
-        [HttpPost("{PollId}/questionlist")]
+        [HttpPost("{PollId}/question_list")]
         public async Task<IActionResult> Create([FromBody] IEnumerable<CreatePollQuestion> x,
                                                 [FromRoute] int pollId)
         {
+            var resultP = await _pollService.GetById(pollId);
+            if (!resultP.Succeeded)
+            {
+                return BadRequest(resultP.Errors);
+            }
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(x);

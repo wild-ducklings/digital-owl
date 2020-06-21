@@ -20,6 +20,6 @@ namespace DigitalOwl.Service.Dto
         /// <summary>
         /// Indicator whether the answer is a correct one (optional).
         /// </summary>
-        public bool? Corectness { get; set; }
+        public bool? Correctness { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// Poll question that question belongs to.
         /// </summary>
-        [ForeignKey("QuestionId")]
+        [ForeignKey("PollQuestionId")]
         public virtual PollQuestion PollQuestion { get; set; }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace DigitalOwl.Repository.Entity
         /// <summary>
         /// Indicator whether the answer is a correct one (optional).
         /// </summary>
-        public bool? Corectness { get; set; }
+        public bool? Correctness { get; set; }
         
         #region TimeStamps
 
