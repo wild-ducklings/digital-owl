@@ -42,6 +42,7 @@ export const Sidebar: React.FC<Props> = () => {
 
     const dispatch = useDispatch<DispatchType>();
     const isOpen = useSelector((state: StateType) => state.SidebarReducer.isOpen);
+    const loginState = useSelector((state: StateType) => state.AuthReducer.login);
 
     const toggleDrawer = toggleDrawerExported(dispatch);
     return <SwipeableDrawer
@@ -56,13 +57,21 @@ export const Sidebar: React.FC<Props> = () => {
             onKeyDown={toggleDrawer(false)}
             onClick={toggleDrawer(false)}
         >
-            <List>
+            <List>{!loginState ?
                 <ListItem button key={"Add"}>
-                    <ListItemIcon icon={<AddIcon/>}>
-
+                    <ListItemIcon>
+                        <AddIcon/>
                     </ListItemIcon>
                     <ListItemText primary={"Add"}/>
-                </ListItem>
+                </ListItem> :
+                <ListItem button key={"Add"} onClick={() => {
+                    alert("xd")
+                }}>
+                    <ListItemIcon>
+                        <AddIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Add"}/>
+                </ListItem>}
             </List>
         </div>
     </SwipeableDrawer>;
