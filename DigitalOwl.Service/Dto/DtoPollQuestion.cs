@@ -4,6 +4,9 @@ using DigitalOwl.Repository.Entity;
 
 namespace DigitalOwl.Service.Dto
 {
+    /// <summary>
+    /// Dto for poll question.
+    /// </summary>
     public class DtoPollQuestion
     {
         /// <summary>
