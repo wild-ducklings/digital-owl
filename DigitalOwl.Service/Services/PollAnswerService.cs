@@ -36,6 +36,7 @@ namespace DigitalOwl.Service.Services
             var entity = _mapper.Map<PollAnswer>(dto);
             entity.CreatedById = userId;
             entity.CreatedDate = DateTime.UtcNow;
+            entity.Correctness ??= false;
 
             var entityResponse = _unitOfWork.PollAnswerRepository.Create(entity);
             await _unitOfWork.SaveChangesAsync();
@@ -56,6 +57,7 @@ namespace DigitalOwl.Service.Services
             {
                 e.CreatedById = userId;
                 e.CreatedDate = DateTime.UtcNow;
+                e.Correctness ??= false;
             }
 
             var entitiesResponse = _unitOfWork.PollAnswerRepository.Create(entities);

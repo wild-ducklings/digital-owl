@@ -32,7 +32,11 @@ namespace DigitalOwl.Repository.Entity
         /// Optional poll time limit.
         /// </summary>
         public DateTime? TimeLimit { get; set; }
-
+        
+        /// <summary>
+        /// Optional points available for poll.
+        /// </summary>
+        public int? Points { get; set; }
 
         #region TimeStamps
 

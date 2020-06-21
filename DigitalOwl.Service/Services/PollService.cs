@@ -40,6 +40,7 @@ namespace DigitalOwl.Service.Services
             var entity = _mapper.Map<Poll>(dto);
             entity.CreatedById = userId;
             entity.CreatedDate = DateTime.UtcNow;
+            entity.Points = 0;
 
             var entityResponse = _unitOfWork.PollRepository.Create(entity);
             await _unitOfWork.SaveChangesAsync();

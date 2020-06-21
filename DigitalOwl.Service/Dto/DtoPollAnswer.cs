@@ -1,5 +1,8 @@
 namespace DigitalOwl.Service.Dto
 {
+    /// <summary>
+    /// Dto for poll answer.
+    /// </summary>
     public class DtoPollAnswer
     {
         /// <summary>

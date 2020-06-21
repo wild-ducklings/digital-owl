@@ -40,9 +40,20 @@ namespace DigitalOwl.Service.Services
             var entity = _mapper.Map<PollQuestion>(dto);
             entity.CreatedById = userId;
             entity.CreatedDate = DateTime.UtcNow;
+            entity.Points ??= 0;
 
             var entityResponse = _unitOfWork.PollQuestionRepository.Create(entity);
+
+            var points = entity.Points;
+            if (entityResponse != null && points != 0)
+            {
+                var poll = _unitOfWork.PollRepository.Get(entity.PollId);
+                poll.Points += points;
+                _unitOfWork.PollRepository.Update(poll, entity.PollId);
+            }
+
             await _unitOfWork.SaveChangesAsync();
+
             return DtoResponseResult<DtoPollQuestion>.CreateResponse(
                 _mapper.Map<DtoPollQuestion>(entityResponse));
         }
@@ -61,9 +72,22 @@ namespace DigitalOwl.Service.Services
             {
                 e.CreatedById = userId;
                 e.CreatedDate = DateTime.UtcNow;
+                e.Points ??= 0;
             }
 
             var entitiesResponse = _unitOfWork.PollQuestionRepository.Create(entities);
+
+            foreach (var e in entitiesResponse)
+            {
+                var points = e.Points;
+                if (e != null && points != 0)
+                {
+                    var poll = _unitOfWork.PollRepository.Get(e.PollId);
+                    poll.Points += points;
+                    _unitOfWork.PollRepository.Update(poll, e.PollId);
+                }
+            }
+
             await _unitOfWork.SaveChangesAsync();
 
             return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(
@@ -119,7 +143,7 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<DtoPollQuestion>.CreateResponse(
                 _mapper.Map<DtoPollQuestion>(entity));
         }
-        
+
         /// <summary>
         /// Find a question with given Id.
         /// </summary>
@@ -129,7 +153,7 @@ namespace DigitalOwl.Service.Services
         {
             var entity =
                 await _unitOfWork.PollQuestionRepository.FindAsync(p =>
-                                p.Id == pollQuestionId);
+                    p.Id == pollQuestionId);
 
             if (entity == null)
                 return DtoResponseResult<DtoPollQuestion>
@@ -149,15 +173,24 @@ namespace DigitalOwl.Service.Services
             DtoPollQuestion dto, int userId)
         {
             var entity = await _unitOfWork.PollQuestionRepository.FindAsync(p => p.Id == dto.Id);
-
+            
             if (entity == null)
                 return DtoResponseResult<DtoPollQuestion>.FailedResponse("Poll question not found");
 
+            var points = entity.Points;
             _mapper.Map(dto, entity);
             entity.UpdatedDate = DateTime.UtcNow;
             entity.UpdatedById = userId;
 
             var entityResponse = _unitOfWork.PollQuestionRepository.Update(entity, dto.Id);
+
+            if (entityResponse != null && points != dto.Points && dto.Points != null)
+            {
+                var poll = _unitOfWork.PollRepository.Get(entity.PollId);
+                poll.Points += dto.Points - points;
+                _unitOfWork.PollRepository.Update(poll, entity.PollId);
+            }
+
             await _unitOfWork.SaveChangesAsync();
             return DtoResponseResult<DtoPollQuestion>.CreateResponse(
                 _mapper.Map<DtoPollQuestion>(entityResponse));
@@ -175,6 +208,13 @@ namespace DigitalOwl.Service.Services
 
             if (entity == null)
                 return DtoResponse.Failed("Poll question not found");
+
+            if (entity.Points != 0)
+            {
+                var poll = _unitOfWork.PollRepository.Get(entity.PollId);
+                poll.Points -= entity.Points;
+                _unitOfWork.PollRepository.Update(poll, entity.PollId);
+            }
 
             _unitOfWork.PollQuestionRepository.Delete(entity);
             await _unitOfWork.SaveChangesAsync();
