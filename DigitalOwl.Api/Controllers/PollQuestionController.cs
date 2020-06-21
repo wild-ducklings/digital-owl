@@ -18,29 +18,31 @@ namespace DigitalOwl.Api.Controllers
         private readonly IPollQuestionService _pollQuestionService;
         private readonly IPollService _pollService;
 
-        public PollQuestionController(IMapper mapper, ILogger<PollQuestion> logger, IPollQuestionService pollQuestionService) : base(mapper, logger)
+
+        public PollQuestionController(IMapper mapper, ILogger<PollQuestion> logger, IPollQuestionService pollQuestionService, IPollService pollService) : base(mapper, logger)
         {
             _pollQuestionService = pollQuestionService;
+            _pollService = pollService;
         }
-
+        
         [HttpGet("questions")]
         public async Task<IActionResult> GetAll()
         {
-            var dtos = await _pollQuestionService.GetAll();
+            var dtos = await _pollQuestionService.GetAllIncluded();
             return Ok(dtos.Result);
         }
 
         [HttpGet("{PollId}/questions")]
         public async Task<IActionResult> GetAll([FromRoute] int pollId)
         {
-            var dtos = await _pollQuestionService.GetAll(pollId);
+            var dtos = await _pollQuestionService.GetAllIncluded(pollId);
             return Ok(dtos.Result);
         }
         
         [HttpGet("questions/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var dto = await _pollQuestionService.GetById(id);
+            var dto = await _pollQuestionService.GetByIdIncluded(id);
 
             if (!dto.Succeeded)
             {

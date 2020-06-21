@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DigitalOwl.Repository.Entity;
 using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Dto.Base;
 
@@ -16,24 +15,55 @@ namespace DigitalOwl.Service.Interface
         /// <returns>Response that contains new created object.</returns>
         Task<DtoResponseResult<DtoPollQuestion>> CreateAsync(DtoPollQuestion dto, int userId);
 
+        /// <summary>
+        /// Create set of questions.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> CreateAsync(
             IEnumerable<DtoPollQuestion> collection, int userId);
 
         /// <summary>
-        /// Pull all items form the database.
+        /// Get all available questions including answers(not sure if it's going to be useful).
         /// </summary>
-        /// <returns>List of Dtos</returns>
-        Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAll(int pollId);
+        /// <returns> All available questions.</returns>
+        Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAllIncluded();
 
         /// <summary>
+        /// Get whole question set from the particular poll including answers.
         /// </summary>
-        /// <returns></returns>
-        // Less useful one, leaving it just in case.
-        Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAll();
+        /// <param name="pollId"> Desired questions' poll Id. </param>
+        /// <returns> Set of particular poll questions. </returns>
+        Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAllIncluded(
+            int pollId);
 
+        /// <summary>
+        /// Find a question with given Id including answers.
+        /// </summary>
+        /// <param name="pollQuestionId"> Question Id.</param>
+        /// <returns> One requested question.</returns>
+        Task<DtoResponseResult<DtoPollQuestion>> GetByIdIncluded(int pollQuestionId);
+        
+        /// <summary>
+        /// Find a question with given Id.
+        /// </summary>
+        /// <param name="pollQuestionId"> Question Id.</param>
+        /// <returns> One requested question.</returns>
         Task<DtoResponseResult<DtoPollQuestion>> GetById(int pollQuestionId);
 
+        /// <summary>
+        /// Updates a particular question.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<DtoResponseResult<DtoPollQuestion>> UpdateAsync(DtoPollQuestion dto, int userId);
+        /// <summary>
+        /// Delete the question of given Id.
+        /// </summary>
+        /// <param name="questionId">Id of question to be deleted</param>
+        /// <returns>Success/failure message.</returns>
         Task<DtoResponse> Delete(int questionId);
     }
 }

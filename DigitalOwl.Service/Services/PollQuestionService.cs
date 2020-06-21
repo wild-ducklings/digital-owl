@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DigitalOwl.Repository.Entity;
-using DigitalOwl.Repository.Interface;
 using DigitalOwl.Repository.Interface.Base;
 using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Dto.Base;
 using DigitalOwl.Service.Interface;
 using DigitalOwl.Service.Services.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalOwl.Service.Services
 {
@@ -64,37 +65,61 @@ namespace DigitalOwl.Service.Services
 
             var entitiesResponse = _unitOfWork.PollQuestionRepository.Create(entities);
             await _unitOfWork.SaveChangesAsync();
-            
+
             return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(
                 _mapper.Map<IEnumerable<DtoPollQuestion>>(entitiesResponse));
         }
 
         /// <summary>
-        /// Get whole question set from the particular poll.
+        /// Get all available questions including answers(not sure if it's going to be useful).
         /// </summary>
-        /// <param name="pollId"> Desired questions' poll Id. </param>
-        /// <returns> Set of particular poll questions. </returns>
-        public async Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAll(int pollId)
+        /// <returns> All available questions.</returns>
+        public async Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAllIncluded()
         {
-            var entities =
-                await _unitOfWork.PollQuestionRepository.FindAllAsync(
-                    p => p.PollId == pollId);
-
+            var entities = _unitOfWork.PollQuestionRepository.GetAll()
+                                      .AsQueryable().Include(p => p.QuestionAnswers);
             return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(
                 _mapper.Map<IEnumerable<DtoPollQuestion>>(entities));
         }
 
         /// <summary>
-        /// Get all available questions (not sure if it's going to be useful).
+        /// Get whole question set from the particular poll including answers.
         /// </summary>
-        /// <returns> All available questions.</returns>
-        public async Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAll()
+        /// <param name="pollId"> Desired questions' poll Id. </param>
+        /// <returns> Set of particular poll questions. </returns>
+        public async Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> GetAllIncluded(
+            int pollId)
         {
-            var entities = await _unitOfWork.PollQuestionRepository.GetAllAsync();
+            var entities =
+                _unitOfWork.PollQuestionRepository.FindBy(
+                                p => p.PollId == pollId)
+                           .AsQueryable().Include(p => p.QuestionAnswers);
+
             return DtoResponseResult<IEnumerable<DtoPollQuestion>>.CreateResponse(
                 _mapper.Map<IEnumerable<DtoPollQuestion>>(entities));
         }
 
+
+        /// <summary>
+        /// Find a question with given Id including answers.
+        /// </summary>
+        /// <param name="pollQuestionId"> Question Id.</param>
+        /// <returns> One requested question.</returns>
+        public async Task<DtoResponseResult<DtoPollQuestion>> GetByIdIncluded(int pollQuestionId)
+        {
+            var entity =
+                _unitOfWork.PollQuestionRepository.FindBy(p =>
+                                p.Id == pollQuestionId).AsQueryable()
+                           .Include(p => p.QuestionAnswers).SingleOrDefault();
+
+            if (entity == null)
+                return DtoResponseResult<DtoPollQuestion>
+                   .FailedResponse("Poll question not found");
+
+            return DtoResponseResult<DtoPollQuestion>.CreateResponse(
+                _mapper.Map<DtoPollQuestion>(entity));
+        }
+        
         /// <summary>
         /// Find a question with given Id.
         /// </summary>
@@ -104,10 +129,12 @@ namespace DigitalOwl.Service.Services
         {
             var entity =
                 await _unitOfWork.PollQuestionRepository.FindAsync(p =>
-                    p.Id == pollQuestionId);
+                                p.Id == pollQuestionId);
+
             if (entity == null)
                 return DtoResponseResult<DtoPollQuestion>
                    .FailedResponse("Poll question not found");
+
             return DtoResponseResult<DtoPollQuestion>.CreateResponse(
                 _mapper.Map<DtoPollQuestion>(entity));
         }

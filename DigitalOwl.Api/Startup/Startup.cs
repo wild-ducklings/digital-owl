@@ -67,7 +67,7 @@ namespace DigitalOwl.Api.Startup
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(opt =>
-                opt.UseLazyLoadingProxies().UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
+                opt.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("DigitalOwl.Migrations")));
 
             services.AddSingleton<IJwtFactory, JwtFactory>();

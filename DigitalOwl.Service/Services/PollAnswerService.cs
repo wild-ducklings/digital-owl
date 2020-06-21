@@ -17,7 +17,7 @@ namespace DigitalOwl.Service.Services
     public class PollAnswerService : BaseService, IPollAnswerService
     {
         /// <summary>
-        /// Constructor.
+        /// PollAnswer constructor.
         /// </summary>
         /// <param name="unitOfWork"></param>
         /// <param name="mapper"></param>
@@ -94,13 +94,13 @@ namespace DigitalOwl.Service.Services
         /// <summary>
         /// Find an answer with given Id.
         /// </summary>
-        /// <param name="pollAnswerId"> Answer Id.</param>
+        /// <param name="answerId"> Answer Id.</param>
         /// <returns> One requested answer.</returns>
-        public async Task<DtoResponseResult<DtoPollAnswer>> GetById(int pollAnswerId)
+        public async Task<DtoResponseResult<DtoPollAnswer>> GetById(int answerId)
         {
             var entity =
                 await _unitOfWork.PollAnswerRepository.FindAsync(p =>
-                    p.Id == pollAnswerId);
+                    p.Id == answerId);
             if (entity == null)
                 return DtoResponseResult<DtoPollAnswer>
                    .FailedResponse("Answer not found");

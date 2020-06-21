@@ -22,16 +22,16 @@ namespace DigitalOwl.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var dto =  _pollService.GetAll();
+            var dto = await _pollService.GetAllIncluded();
             return Ok(dto.Result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var dto = await _pollService.GetById(id);
+            var dto = await _pollService.GetByIdIncluded(id);
 
             if (!dto.Succeeded)
             {

@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Dto.Base;
@@ -25,11 +22,34 @@ namespace DigitalOwl.Service.Interface
         /// Pull all items form the database.
         /// </summary>
         /// <returns>List of Dtos</returns>
-        Task<DtoResponseResult<IEnumerable<DtoPoll>>> GetAll();
+        Task<DtoResponseResult<IEnumerable<DtoPoll>>> GetAllIncluded();
 
+        /// <summary>
+        /// Find a poll with given Id.
+        /// </summary>
+        /// <param name="pollId"> Poll Id.</param>
+        /// <returns> Requested poll.</returns>
         Task<DtoResponseResult<DtoPoll>> GetById(int pollId);
-
+        
+        /// <summary>
+        /// Find a poll with given Id including questions and answers.
+        /// </summary>
+        /// <param name="pollId"> Question Id.</param>
+        /// <returns> One requested question.</returns>
+        Task<DtoResponseResult<DtoPoll>> GetByIdIncluded(int pollId);
+        
+        /// <summary>
+        /// Updates a particular poll.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId);
+        /// <summary>
+        /// Delete the poll of given Id.
+        /// </summary>
+        /// <param name="pollId">Id of a poll to be deleted</param>
+        /// <returns>Success/failure message.</returns>
         Task<DtoResponse> Delete(int pollId);
         
         

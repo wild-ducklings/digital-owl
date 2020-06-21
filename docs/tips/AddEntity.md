@@ -4,12 +4,13 @@
 1. Create Entity in Repository [syntax: <Name>].
 2. IF relationship of the Entity is to MANY add model builder for entity to be on delete
    in ApplicationDbContext.
-3. Create Interface that inherits IGenericRepository with new Entity [syntax: I<Name>Repository].
-4. Implement Repository. It must inherit GenericRepository with new Entity [syntax: <Name>Repository].
-5. Update IUnitOfWork with access singleton.
-6. Update UnitOfWork with private and public (with get method) instance of Interface. 
-7. Update ApplicationDbContext in order to set a particular table in database.
-8. Write unit test.
+3. Add time stamp to User.
+4. Create Interface that inherits IGenericRepository with new Entity [syntax: I<Name>Repository].
+5. Implement Repository. It must inherit GenericRepository with new Entity [syntax: <Name>Repository].
+6. Update IUnitOfWork with access singleton.
+7. Update UnitOfWork with private and public (with get method) instance of Interface. 
+8. Update ApplicationDbContext in order to set a particular table in database.
+9. Write unit test.
 #### Service phase
 1. Create Dto model in Service [syntax: Dto<Name>].
 2. Add map for AutoMapper in Infrastructure/DtoToEntityMapperProfile.

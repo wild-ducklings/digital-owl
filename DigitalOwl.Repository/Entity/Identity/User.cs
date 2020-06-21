@@ -24,6 +24,22 @@ namespace DigitalOwl.Repository.Entity.Identity
 
         #region TimeStamps
 
+        #region PollAnswer
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("CreatedBy"))]
+        public virtual IEnumerable<PollAnswer> AnswersCreated { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [InverseProperty(("UpdatedBy"))]
+        public virtual IEnumerable<PollAnswer> AnswersUpdated { get; set; }
+
+        #endregion
+        
         #region PollQuestion
 
         /// <summary>

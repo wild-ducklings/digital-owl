@@ -8,31 +8,54 @@ namespace DigitalOwl.Service.Interface
     public interface IPollAnswerService
     {
         /// <summary>
-        /// Create Entity from Dto asynchronously.
+        /// Create a single answer.
         /// </summary>
-        /// <param name="dto">New object</param>
-        /// <param name="userId">Id of user creating this particular object.</param>
-        /// <returns>Response that contains new created object.</returns>
+        /// <param name="dto"></param>
+        /// <param name="userId"> Id of the user creating an answer. </param>
+        /// <returns> Created answer. </returns>
         Task<DtoResponseResult<DtoPollAnswer>> CreateAsync(DtoPollAnswer dto, int userId);
 
+        /// <summary>
+        /// Create set of answers.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<DtoResponseResult<IEnumerable<DtoPollAnswer>>> CreateAsync(
             IEnumerable<DtoPollAnswer> collection, int userId);
 
         /// <summary>
-        /// Pull all items form the database.
+        /// Get whole answer set from the particular question.
         /// </summary>
-        /// <returns>List of Dtos</returns>
-        Task<DtoResponseResult<IEnumerable<DtoPollAnswer>>> GetAll(int pollId);
+        /// <param name="questionId"> Desired answers' question Id. </param>
+        /// <returns> Set of particular answers. </returns>
+        Task<DtoResponseResult<IEnumerable<DtoPollAnswer>>> GetAll(int questionId);
 
         /// <summary>
+        /// Get all available answers (not sure if it's going to be useful).
         /// </summary>
-        /// <returns></returns>
-        // Less useful one, leaving it just in case.
+        /// <returns> All available answers.</returns>
         Task<DtoResponseResult<IEnumerable<DtoPollAnswer>>> GetAll();
 
-        Task<DtoResponseResult<DtoPollAnswer>> GetById(int pollQuestionId);
+        /// <summary>
+        /// Find an answer with given Id.
+        /// </summary>
+        /// <param name="answerId"> Answer Id.</param>
+        /// <returns> One requested answer.</returns>
+        Task<DtoResponseResult<DtoPollAnswer>> GetById(int answerId);
 
+        /// <summary>
+        /// Update given answer.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<DtoResponseResult<DtoPollAnswer>> UpdateAsync(DtoPollAnswer dto, int userId);
-        Task<DtoResponse> Delete(int questionId);
+        /// <summary>
+        /// Delete the answer of given Id.
+        /// </summary>
+        /// <param name="answerId">Id of an answer to be deleted</param>
+        /// <returns>Success/failure message.</returns>
+        Task<DtoResponse> Delete(int answerId);
     }
 }
