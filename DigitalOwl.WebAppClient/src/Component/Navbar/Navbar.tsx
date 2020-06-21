@@ -2,14 +2,14 @@ import React from "react";
 import {AppBar, createStyles, IconButton, Theme, Toolbar, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {toggleDrawerExported} from "../Sidebar/Sidebar";
 import {DropdownUserMenu} from "../DropdownMenu/DropdownUserMenu";
+import {StateType} from "../../Store/store";
 
 const UseStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
+        loginRoot: {
             width: "100%",
         },
         title: {
@@ -24,21 +24,21 @@ interface Props {
 }
 
 export const Navbar: React.FC<Props> = (props) => {
-
+    const loginState = useSelector((state: StateType) => state.AuthReducer.login);
     const classes = UseStyles();
 
     const dispatch = useDispatch();
 
 
-    return <AppBar position={"static"} className={classes.root}>
+    return <AppBar position={"static"} className={classes.loginRoot}>
         <Toolbar>
-            <IconButton edge={"start"} onClick={toggleDrawerExported(dispatch)(true)}>
+            {loginState && <IconButton edge={"start"} onClick={toggleDrawerExported(dispatch)(true)}>
                 <MenuIcon/>
-            </IconButton>
+            </IconButton>}
             <Typography variant={"h6"} className={classes.title}>
                 {props.title}
             </Typography>
-            <DropdownUserMenu />
+            <DropdownUserMenu/>
         </Toolbar>
     </AppBar>;
 };
