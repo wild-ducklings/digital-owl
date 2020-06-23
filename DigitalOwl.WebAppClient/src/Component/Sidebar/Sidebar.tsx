@@ -57,21 +57,13 @@ export const Sidebar: React.FC<Props> = () => {
             onKeyDown={toggleDrawer(false)}
             onClick={toggleDrawer(false)}
         >
-            <List>{!loginState ?
-                <ListItem button key={"Add"}>
+            <List>
+                <ListItem onClick={()=>{console.log("aaaaa")}} button key={"Add"}>
                     <ListItemIcon>
                         <AddIcon/>
                     </ListItemIcon>
                     <ListItemText primary={"Add"}/>
-                </ListItem> :
-                <ListItem button key={"Add"} onClick={() => {
-                    alert("xd")
-                }}>
-                    <ListItemIcon>
-                        <AddIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary={"Add"}/>
-                </ListItem>}
+                </ListItem>
             </List>
         </div>
     </SwipeableDrawer>;

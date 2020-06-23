@@ -1,7 +1,7 @@
 import React from "react";
 import {createStyles, Theme} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Poll} from "../Page/Poll/Poll";
 import {LoginPage} from "Page/Login/Login";
 import {Navbar} from "Component/Navbar/Navbar";
 import {Sidebar} from "Component/Sidebar/Sidebar"
@@ -33,10 +33,12 @@ export const App = () => {
                 <Route path={"/login"}>
                     <LoginPage/>
                 </Route>
+                <Route path={"/czygonciarzapojebalo"}>
+                    <Poll/>
+                </Route>
                 <Route path={"/group"}>
                     <GroupPage/>
                 </Route>
-
                 <Route path={"/"}>
                     <LandingPage/>
                 </Route>
