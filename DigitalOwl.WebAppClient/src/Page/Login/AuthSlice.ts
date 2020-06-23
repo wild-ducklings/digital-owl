@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {FormValues} from "./Login";
-import api from "../../Api/Api";
+import api from "../../Services/Base/Api";
+import {LoginUser} from "../../Model/LoginUser";
 
 export interface authState {
     login: boolean,
@@ -14,16 +14,15 @@ const initState: authState = {
 }
 export const fetchRegisterUser = createAsyncThunk(
     "register",
-    async (val: FormValues) => {
+    async (val: LoginUser) => {
         try {
             const response = await api({
                 method: "post",
-                url: "http://localhost:5000/api/auth/login",
+                url: "/auth/login",
                 data: val
             });
             console.log(response.data);
-            let resJson = JSON.stringify(response.data);
-            localStorage.setItem("user", resJson);
+            localStorage.setItem("user", JSON.stringify(response.data)); // TODO put in REDUX
             localStorage.setItem("token", response.data.token);
         } catch (e) {
             console.log(e);
@@ -35,9 +34,6 @@ const authSlice = createSlice({
     name: "auth",
     initialState: initState,
     reducers: {
-        login: (state, action) => {
-            state.token = action.payload;
-        },
         logout: state => {
             state.login = false
             state.token = null;
@@ -48,7 +44,7 @@ const authSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(fetchRegisterUser.fulfilled, state => {
             state.login = true;
-
+            state.token = localStorage.getItem("token");
         })
     }
 });

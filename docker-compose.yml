@@ -1,8 +1,14 @@
 version: '3.5'
 
 services:
-  #    api:
-  #        build: .
+  api:
+    ports:
+      - 8080:80
+    build: .
+    networks:
+      - mssql
+    environment:
+      ConnectionString : "Server=localhost; Database=DigitalOwl; User Id=SA; Password=Test1234; MultipleActiveResultSets=true"
   mssql:
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     ports:

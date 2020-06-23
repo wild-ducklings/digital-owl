@@ -1,12 +1,14 @@
 import {combineReducers, configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
-import {SidebarReducer} from "../Component/Sidebar/SidebarSlice";
-import {AuthReducer} from "../Page/Login/AuthSlice";
-import {DropdownUserMenuReducer} from "../Component/DropdownMenu/DropdownUserMenuSlice";
+import {SidebarReducer} from "Component/Sidebar/SidebarSlice";
+import {AuthReducer} from "Page/Login/AuthSlice";
+import {DropdownUserMenuReducer} from "Component/DropdownMenu/DropdownUserMenuSlice";
+import {GroupReducer} from "../Page/Group/GroupSlice";
 
 const reducers = combineReducers({
     SidebarReducer,
     AuthReducer,
-    DropdownUserMenuReducer
+    DropdownUserMenuReducer,
+    GroupReducer
 });
 
 type ReducerType = ReturnType<typeof reducers>;

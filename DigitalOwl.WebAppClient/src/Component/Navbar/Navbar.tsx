@@ -29,12 +29,11 @@ export const Navbar: React.FC<Props> = (props) => {
 
     const dispatch = useDispatch();
 
+    const toggleSidebar = toggleDrawerExported(dispatch)(true);
 
     return <AppBar position={"static"} className={classes.loginRoot}>
         <Toolbar>
-            {loginState && <IconButton edge={"start"} onClick={toggleDrawerExported(dispatch)(true)}>
-                <MenuIcon/>
-            </IconButton>}
+            {loginState && <IconButton edge={"start"} onClick={toggleSidebar} children={<MenuIcon/>}/>}
             <Typography variant={"h6"} className={classes.title}>
                 {props.title}
             </Typography>

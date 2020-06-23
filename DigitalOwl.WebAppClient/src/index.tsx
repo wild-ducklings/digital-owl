@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App/App';
 import * as serviceWorker from './serviceWorker';
 import {CssBaseline, MuiThemeProvider} from "@material-ui/core";
 import {theme} from "./Theme/theme";
 import {store} from "./Store/store";
 import {Provider} from "react-redux";
+import {App} from "./App/App";
 
 ReactDOM.render(
     <React.StrictMode>

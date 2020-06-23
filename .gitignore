@@ -1,5 +1,5 @@
 # diargam output
- out/
+out/*
 
 # ide config
 .idea/
@@ -7,8 +7,12 @@
 # c# builds
 bin/
 obj/
+out/
 
 # env file
 .env
 
 docs/docs/
+
+# Local Netlify folder
+.netlify

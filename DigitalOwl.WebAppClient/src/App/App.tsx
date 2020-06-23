@@ -1,31 +1,29 @@
 import React from "react";
-import {Button, Card, CardActions, CardContent, createStyles, Theme, Typography} from "@material-ui/core";
+import {createStyles, Theme} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-import {LoginPage} from "../Page/Login/Login";
-import {Navbar} from "../Component/Navbar/Navbar";
-import {Sidebar} from "../Component/Sidebar/Sidebar"
-import {LandingPage} from "../Page/Landing/LandingPage";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {LoginPage} from "Page/Login/Login";
+import {Navbar} from "Component/Navbar/Navbar";
+import {Sidebar} from "Component/Sidebar/Sidebar"
+import {LandingPage} from "Page/Landing/LandingPage";
+import {GroupPage} from "Page/Group/GroupPage";
 
-const UseStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        loginRoot: {
-            flexGrow: 1,
-            flexDirection: "column",
-            background: theme.palette.background.default,
-            justifyContent: "center",
-            display: "flex",
-            alignItems: "center"
-        },
-        title: {
-            fontSize: 17,
-        }
-
-    }),
+const UseStyles = makeStyles(
+    (theme: Theme) =>
+        createStyles({
+            loginRoot: {
+                background: theme.palette.background.default,
+            },
+            title: {
+                fontSize: 17,
+            },
+        }),
 );
 
-export default () => {
+export const App = () => {
+
     const classes = UseStyles();
+
     return <div className={classes.loginRoot}>
         <Router>
             <Navbar title={"Digital Owl"}/>
@@ -35,11 +33,14 @@ export default () => {
                 <Route path={"/login"}>
                     <LoginPage/>
                 </Route>
+                <Route path={"/group"}>
+                    <GroupPage/>
+                </Route>
+
                 <Route path={"/"}>
                     <LandingPage/>
                 </Route>
             </Switch>
         </Router>
-    </div>
-        ;
+    </div>;
 }

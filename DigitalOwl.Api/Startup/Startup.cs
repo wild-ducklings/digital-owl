@@ -66,6 +66,9 @@ namespace DigitalOwl.Api.Startup
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // var ConString = _configuration.GetConnectionString("DefaultConnection") != null
+                // ? _configuration.GetConnectionString("DefaultConnection")
+                // : Environment.GetEnvironmentVariable("ConnectionString");
             services.AddDbContext<ApplicationDbContext>(opt =>
                 opt.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("DigitalOwl.Migrations")));
