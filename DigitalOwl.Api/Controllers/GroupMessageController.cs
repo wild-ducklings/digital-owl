@@ -6,16 +6,28 @@ using DigitalOwl.Service.Dto;
 using DigitalOwl.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace DigitalOwl.Api.Controllers
 {
+    /// <summary>
+    /// GroupMessage Endpoint
+    /// </summary>
     [ApiController]
+    [Produces("application/json")]
     [Route("api/group")]
     public class GroupMessageController : BaseController<GroupMessageController>
     {
         private readonly IGroupMessageService _groupMessageService;
         private readonly IGroupService _groupService;
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="mapper"></param>
+        /// <param name="logger"></param>
+        /// <param name="groupMessageService"></param>
+        /// <param name="groupService"></param>
         public GroupMessageController(IMapper mapper, ILogger<GroupMessageController> logger,
                                       IGroupMessageService groupMessageService, IGroupService groupService)
             : base(mapper, logger)
@@ -24,6 +36,11 @@ namespace DigitalOwl.Api.Controllers
             _groupService = groupService;
         }
 
+        /// <summary>
+        /// return all message which is on group.
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
         [HttpGet("{groupId}/message")]
         public async Task<IActionResult> GetAllByGroupId([FromRoute] int groupId)
         {
@@ -31,6 +48,12 @@ namespace DigitalOwl.Api.Controllers
             return Ok(dtos.Result);
         }
 
+        /// <summary>
+        /// return one group message by id
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{groupId}/message/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int groupId, [FromRoute] int id)
         {
@@ -39,6 +62,9 @@ namespace DigitalOwl.Api.Controllers
         }
 
         [HttpPost("{groupId}/message")]
+        [ProducesResponseType(typeof(DtoGroupMessage), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(System.Collections.Generic.IEnumerable<string>), StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Create([FromBody] CreateGroupMessage model, [FromRoute] int groupId)
         {
             var group = await _groupService.GetById(groupId);
@@ -61,7 +87,17 @@ namespace DigitalOwl.Api.Controllers
             return Ok(result.Result);
         }
 
+        /// <summary>
+        /// Modify message in group by id
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="groupId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut("{groupId}/message/{id}")]
+        [ProducesResponseType(typeof(DtoGroupMessage), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(System.Collections.Generic.IEnumerable<string>), StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Update([FromBody] CreateGroupMessage model, [FromRoute] int groupId,
                                                 [FromRoute] int id)
         {
@@ -94,7 +130,16 @@ namespace DigitalOwl.Api.Controllers
             return Ok(result.Result);
         }
 
+        /// <summary>
+        /// delete message by id
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{groupId}/message/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(System.Collections.Generic.IEnumerable<string>), StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Delete([FromRoute] int groupId, [FromRoute] int id)
         {
             var dto = await _groupMessageService.GetById(id);

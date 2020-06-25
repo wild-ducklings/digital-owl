@@ -10,17 +10,30 @@ using DigitalOwl.Service.Interface;
 using DigitalOwl.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace DigitalOwl.Api.Controllers
 {
+    /// <summary>
+    /// GroupMember Endpoint
+    /// </summary>
     [ApiController]
     [Route("api/group")]
+    [Produces("application/json")]
     public class GroupMemberController : BaseController<GroupMemberController>
     {
         private readonly IGroupMemberService _groupMemberService;
         private readonly IGroupService _groupService;
         private readonly IGroupRoleService _groupRoleService;
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="mapper">aa</param>
+        /// <param name="logger"></param>
+        /// <param name="groupMemberService"></param>
+        /// <param name="groupService"></param>
+        /// <param name="groupRoleService"></param>
         public GroupMemberController(IMapper mapper, ILogger<GroupMemberController> logger,
                                      IGroupMemberService groupMemberService, IGroupService groupService,
                                      IGroupRoleService groupRoleService)
@@ -31,8 +44,12 @@ namespace DigitalOwl.Api.Controllers
             _groupRoleService = groupRoleService;
         }
 
+        /// <summary>
+        /// Only debug return all group member
+        /// </summary>
+        /// <returns></returns>
         // TODO delete it only debug never use it on production
-        // [Obsolete("Debug only")]
+        [Obsolete("Debug only")]
         [HttpGet("member")]
         public async Task<IActionResult> GetAll()
         {
@@ -59,6 +76,10 @@ namespace DigitalOwl.Api.Controllers
         /// <param name="groupId">Group which User will be add</param>
         /// <returns></returns>
         [HttpPost("{groupId}/member")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(System.Collections.Generic.IEnumerable<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Create([FromBody] ViewUser model, [FromRoute] int groupId)
         {
             // TODO Error checking
@@ -99,12 +120,15 @@ namespace DigitalOwl.Api.Controllers
 
         // path dont contains id 'cause use delete by User 
         /// <summary>
-        /// 
+        ///  Delete user in Group if all user will be delete group also will be
         /// </summary>
         /// <param name="model"></param>
         /// <param name="groupId"></param>
         /// <returns></returns>
         [HttpDelete("{groupId}/member")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(System.Collections.Generic.IEnumerable<string>), StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Delete([FromBody] ViewUser model, [FromRoute] int groupId)
         {
             // TODO think about check if group exist and add error about it

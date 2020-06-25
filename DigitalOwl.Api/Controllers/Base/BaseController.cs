@@ -6,19 +6,37 @@ using Microsoft.Extensions.Logging;
 
 namespace DigitalOwl.Api.Controllers.Base
 {
+    /// <summary>
+    /// Base Controller which contains method which is using in every controller
+    /// </summary>
+    /// <typeparam name="TController"></typeparam>
+    [Produces("application/json")]
     public class BaseController<TController> : ControllerBase
     {
+        /// <summary>
+        /// Automapper
+        /// </summary>
         protected readonly IMapper _mapper;
+
+        /// <summary>
+        /// Logging insatnce
+        /// </summary>
         protected readonly ILogger<TController> _logger;
-        
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="mapper"></param>
+        /// <param name="logger"></param>
         public BaseController(IMapper mapper, ILogger<TController> logger)
         {
             _mapper = mapper;
             _logger = logger;
         }
 
-
-
+        /// <summary>
+        /// userId whose use this endpoint
+        /// </summary>
         protected int UserId
         {
             get
@@ -29,6 +47,9 @@ namespace DigitalOwl.Api.Controllers.Base
             }
         }
 
+        /// <summary>
+        /// Role whose use this endpoint
+        /// </summary>
         protected string Role
         {
             get

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using DigitalOwl.Api.Controllers.Base;
@@ -12,8 +13,12 @@ using Microsoft.AspNetCore.Http;
 
 namespace DigitalOwl.Api.Controllers
 {
+    /// <summary>
+    /// Controller to use Group resources
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     // [ApiConventionType(typeof(DefaultApiConventions))]
     public class GroupController : BaseController<GroupController>
     {
@@ -34,7 +39,13 @@ namespace DigitalOwl.Api.Controllers
             _groupMemberService = groupMemberService;
         }
 
+        /// <summary>
+        /// Return All Group 
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("Not for Production")]
         [HttpGet("")]
+        [ProducesResponseType(typeof(IEnumerable<DtoGroup>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var dtos = await _groupService.GetAll();
@@ -42,7 +53,15 @@ namespace DigitalOwl.Api.Controllers
             return Ok(dtos.Result);
         }
 
+        /// <summary>
+        /// Get Group by it's id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(DtoGroup), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var result = await _groupService.GetById(id);
@@ -54,6 +73,11 @@ namespace DigitalOwl.Api.Controllers
             return Ok(result.Result);
         }
 
+        /// <summary>
+        /// Create new group
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("")]
         [ProducesResponseType(typeof(DtoGroup), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary),
@@ -85,11 +109,22 @@ namespace DigitalOwl.Api.Controllers
                 UserId = UserId,
                 GroupRoleId = 3
             }, UserId);
-            // Error checking
+            // TODO Error checking
             return CreatedAtAction(nameof(GetById), new {id = newDto.Id}, newDto);
         }
 
+        /// <summary>
+        /// Modify Group 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(DtoGroup), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary),
+            StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Update([FromBody] CreateGroup model, [FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -115,7 +150,15 @@ namespace DigitalOwl.Api.Controllers
             return Ok(newDto);
         }
 
+        /// <summary>
+        /// Delete group
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var result = await _groupService.Delete(id);

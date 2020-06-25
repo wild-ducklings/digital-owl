@@ -10,17 +10,28 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace DigitalOwl.Api.Controllers
 {
+    /// <summary>
+    /// Controller which allow to user to user to login
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="jwtFactory"></param>
+        /// <param name="jwtOptions"></param>
         public AuthController(UserManager<User> userManager, IJwtFactory jwtFactory,
                               IOptions<JwtIssuerOptions> jwtOptions)
         {
@@ -29,8 +40,17 @@ namespace DigitalOwl.Api.Controllers
             _jwtOptions = jwtOptions.Value;
         }
 
+        /// <summary>
+        /// Method to login user
+        /// </summary>
+        /// <param name="credentials"></param>
+        /// <returns></returns>
         // POST api/auth/login
         [HttpPost("login")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary),
+            StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Post([FromBody] LoginUser credentials)
         {
             if (!ModelState.IsValid)

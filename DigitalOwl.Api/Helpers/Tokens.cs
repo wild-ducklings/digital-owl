@@ -6,8 +6,20 @@ using Newtonsoft.Json;
 
 namespace DigitalOwl.Api.Helpers
 {
+    /// <summary>
+    /// Class To generate JWT
+    /// </summary>
     public class Tokens
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="identity"></param>
+        /// <param name="jwtFactory"></param>
+        /// <param name="userName"></param>
+        /// <param name="jwtOptions"></param>
+        /// <param name="serializerSettings"></param>
+        /// <returns></returns>
         public static async Task<string> GenerateJwt(ClaimsIdentity identity, IJwtFactory jwtFactory, string userName, JwtIssuerOptions jwtOptions, JsonSerializerSettings serializerSettings)
         {
             var response = new
