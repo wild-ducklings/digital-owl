@@ -12,7 +12,7 @@ out/
 # env file
 .env
 
-docs/docs/
+#docs/docs/
 
 # Local Netlify folder
 .netlify

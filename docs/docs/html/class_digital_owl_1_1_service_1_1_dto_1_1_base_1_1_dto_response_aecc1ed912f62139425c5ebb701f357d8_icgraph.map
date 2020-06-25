@@ -1,0 +1,8 @@
+<map id="DigitalOwl.Service.Dto.Base.DtoResponse.Success" name="DigitalOwl.Service.Dto.Base.DtoResponse.Success">
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_member_service.html#a520e3f9198f40288bef5c6e883b6e314" title="Remove the user of given id from group. " alt="" coords="249,5,440,47"/>
+<area shape="rect" id="node3" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_message_service.html#a51b5dd5ff416fe9a0415fc82edcc44cb" title="Delete message of given id. " alt="" coords="247,71,443,112"/>
+<area shape="rect" id="node4" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_service.html#aa144c49fa43f46e3aa7ce47919bccdcd" title="Delete the group of given id. " alt="" coords="250,136,439,177"/>
+<area shape="rect" id="node5" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_answer_service.html#a6b6fa7dec398ad828681e20f619d37aa" title="Delete the answer of given Id. " alt="" coords="250,201,439,243"/>
+<area shape="rect" id="node6" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_question_service.html#a1c6710b4182b3a7e5ee8006916b24b7c" title="Delete the question of given Id. " alt="" coords="250,267,439,308"/>
+<area shape="rect" id="node7" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_service.html#ac4e6cb58b7fe41673eb7968bb121126d" title="Delete the poll of given Id. " alt="" coords="250,332,439,373"/>
+</map>

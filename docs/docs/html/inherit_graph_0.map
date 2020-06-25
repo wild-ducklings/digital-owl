@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_api_1_1_controllers_1_1_auth_controller.html" title="Controller which allow to user to user to login " alt="" coords="189,5,365,47"/>
+<area shape="rect" id="node3" href="$class_digital_owl_1_1_api_1_1_controllers_1_1_base_1_1_base_controller.html" title="Base Controller which contains method which is using in every controller " alt="" coords="161,71,392,112"/>
+<area shape="rect" id="node4" href="$class_digital_owl_1_1_api_1_1_controllers_1_1_registration_controller.html" title="class to create user " alt="" coords="189,136,365,177"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="DigitalOwl.Repository.Repositories.PollAnswerRepository" name="DigitalOwl.Repository.Repositories.PollAnswerRepository">
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_repository_1_1_repositories_1_1_base_1_1_generic_repository.html" title="GenericRepository\&lt;\l PollAnswer \&gt;" alt="" coords="5,95,144,136"/>
+<area shape="rect" id="node3" href="$interface_digital_owl_1_1_repository_1_1_interface_1_1_i_poll_answer_repository.html" title="PollAnswerRepository Interface. " alt="" coords="168,102,323,129"/>
+<area shape="rect" id="node4" href="$interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html" title="IGenericRepository\l\&lt; PollAnswer \&gt;" alt="" coords="178,5,313,47"/>
+</map>

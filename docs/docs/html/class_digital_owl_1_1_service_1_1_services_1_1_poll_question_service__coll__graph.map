@@ -1,0 +1,5 @@
+<map id="DigitalOwl.Service.Services.PollQuestionService" name="DigitalOwl.Service.Services.PollQuestionService">
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_service_1_1_services_1_1_base_1_1_base_service.html" title="BaseService" alt="" coords="61,185,157,212"/>
+<area shape="rect" id="node3" href="$interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_unit_of_work.html" title="Class wrap up all Repositories make easier to use in Services " alt="" coords="5,81,213,123"/>
+<area shape="rect" id="node5" href="$interface_digital_owl_1_1_service_1_1_interface_1_1_i_poll_question_service.html" title="Interface for PollQuestionService " alt="" coords="181,185,325,212"/>
+</map>

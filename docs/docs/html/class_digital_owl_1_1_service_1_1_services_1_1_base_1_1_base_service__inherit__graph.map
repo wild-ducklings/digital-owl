@@ -1,0 +1,9 @@
+<map id="DigitalOwl.Service.Services.Base.BaseService" name="DigitalOwl.Service.Services.Base.BaseService">
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_member_service.html" title="Group member service. " alt="" coords="243,5,432,47"/>
+<area shape="rect" id="node3" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_message_service.html" title="Group message service. " alt="" coords="243,71,432,112"/>
+<area shape="rect" id="node4" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_role_service.html" title="Group Role Service " alt="" coords="243,136,432,177"/>
+<area shape="rect" id="node5" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_service.html" title="Group Service. " alt="" coords="243,201,432,243"/>
+<area shape="rect" id="node6" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_answer_service.html" title="Poll answer service. " alt="" coords="243,267,432,308"/>
+<area shape="rect" id="node7" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_question_service.html" title="Poll question service. " alt="" coords="243,332,432,373"/>
+<area shape="rect" id="node8" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_service.html" title="Poll service. " alt="" coords="243,397,432,439"/>
+</map>

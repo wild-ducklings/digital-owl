@@ -1,0 +1,10 @@
+<map id="DigitalOwl.Repository.Interface.Entity.ITimestamp" name="DigitalOwl.Repository.Interface.Entity.ITimestamp">
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_group.html" title="Group entity. " alt="" coords="273,5,463,47"/>
+<area shape="rect" id="node3" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_group_member.html" title="Entity of GroupMember " alt="" coords="273,71,463,112"/>
+<area shape="rect" id="node4" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_group_message.html" title="DigitalOwl.Repository.Entity.\lGroupMessage" alt="" coords="273,136,463,177"/>
+<area shape="rect" id="node5" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_group_police.html" title="That tell user what can and cannot do in group " alt="" coords="273,201,463,243"/>
+<area shape="rect" id="node6" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_group_role.html" title="Group Role " alt="" coords="273,267,463,308"/>
+<area shape="rect" id="node7" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_poll.html" title="Questionnaire/Poll structure. " alt="" coords="261,333,475,359"/>
+<area shape="rect" id="node8" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_poll_answer.html" title="DigitalOwl.Repository.Entity.\lPollAnswer" alt="" coords="273,384,463,425"/>
+<area shape="rect" id="node9" href="$class_digital_owl_1_1_repository_1_1_entity_1_1_poll_question.html" title="Poll question. " alt="" coords="273,449,463,491"/>
+</map>

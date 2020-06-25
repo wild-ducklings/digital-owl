@@ -1,0 +1,17 @@
+<map id="DigitalOwl.Service.Dto.Base.DtoResponseResult.FailedResponse" name="DigitalOwl.Service.Dto.Base.DtoResponseResult.FailedResponse">
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_member_service.html#a11c43b63eee3ed1b42336fcccaa3b1a2" title="Checks if user of userId belongs to group with group Id. " alt="" coords="293,5,532,61"/>
+<area shape="rect" id="node3" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_member_service.html#a5550af96d899000edc6a7397baa07165" title="Find the group member by given id. " alt="" coords="313,86,513,127"/>
+<area shape="rect" id="node4" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_member_service.html#a9544b1d8b3ae1111894e9cac83e842bb" title="Updates a particular group member. " alt="" coords="297,151,528,193"/>
+<area shape="rect" id="node5" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_message_service.html#ae895f06fc59e05a8de89a5333f680614" title="Find message of given id. " alt="" coords="309,217,516,258"/>
+<area shape="rect" id="node6" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_message_service.html#a87b925e1c8ac3ed60ac584091f9bd5c1" title="Update message of given id. " alt="" coords="294,282,531,323"/>
+<area shape="rect" id="node7" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_service.html#a711090c7ef3e91f8f22b8da3c649c723" title="Find group of given id. " alt="" coords="318,347,507,389"/>
+<area shape="rect" id="node8" href="$class_digital_owl_1_1_service_1_1_services_1_1_group_service.html#a9a72e9b20d68415392ed909a2dbb5f91" title="Update particular group. " alt="" coords="318,413,507,454"/>
+<area shape="rect" id="node9" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_answer_service.html#a2d7f68ed5397c0fadaabba9770e67e7d" title="Find an answer with given Id. " alt="" coords="318,478,507,519"/>
+<area shape="rect" id="node10" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_answer_service.html#a4a880efc8f3bd077c70a14e310f4704c" title="Update given answer. " alt="" coords="305,543,520,585"/>
+<area shape="rect" id="node11" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_question_service.html#aa456f7c10c8fd418af67fa122ce75dea" title="Find a question with given Id including answers. " alt="" coords="292,609,533,650"/>
+<area shape="rect" id="node12" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_question_service.html#a7604c0eab310c8de95174a68cd40ff66" title="Find a question with given Id. " alt="" coords="317,674,509,715"/>
+<area shape="rect" id="node13" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_question_service.html#a4d9639d84d1e00f9e414e269acf6d5cd" title="Updates a particular question. " alt="" coords="301,739,524,781"/>
+<area shape="rect" id="node14" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_service.html#a1455b7305b870aefa443b2a041ac4b6d" title="Find a poll with given Id. " alt="" coords="318,805,507,846"/>
+<area shape="rect" id="node15" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_service.html#aca7d2891fe211f3beb509710cf21a02d" title="Find a poll with given Id including questions and answers. " alt="" coords="318,870,507,911"/>
+<area shape="rect" id="node16" href="$class_digital_owl_1_1_service_1_1_services_1_1_poll_service.html#a22fdfa7331fb3022ca601d7eeb692f74" title="Updates a particular poll. " alt="" coords="318,935,507,977"/>
+</map>

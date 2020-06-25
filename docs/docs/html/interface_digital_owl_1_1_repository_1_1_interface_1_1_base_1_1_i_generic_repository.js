@@ -1,0 +1,25 @@
+var interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository =
+[
+    [ "Count", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a10463dd2b53ebb03ffe048a046e10b62", null ],
+    [ "CountAsync", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a6e9a361249cb23fa511cc693d021af48", null ],
+    [ "Create", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a1f0b1a11ca7ee704c8a0604766a0ef38", null ],
+    [ "Create", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#ad6018f59746ebc4c61219be927ad5616", null ],
+    [ "Delete", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a1e15871f3d0fa1f958d1759c40ddf8ae", null ],
+    [ "DeleteRange", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a95e0fd3ab9faeef1305b0e14d73841b2", null ],
+    [ "Dispose", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a06a9d3d51a72917cc0f9bea6ef6cbe56", null ],
+    [ "Find", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a243ac3a6eaebf3b4fb777c8163720687", null ],
+    [ "FindAll", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#af1151046728b324ae3ed1b855a3cf2e2", null ],
+    [ "FindAll", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a7e4e900da2624a25806fbf4990f5f455", null ],
+    [ "FindAllAsync", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a40b3523bd40b3de717148cf84e6fc81b", null ],
+    [ "FindAllAsync", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a0c79a50c3622bbe0eb0f23375f8fefa0", null ],
+    [ "FindAsync", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a62f3ca6aa7cfd0aea325dcbd6c3ff532", null ],
+    [ "FindBy", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#acd6373d79e95b29a9dbcca8a485f749a", null ],
+    [ "FindBy", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#af555fac0b6155d8cb3585cadeae4935b", null ],
+    [ "Get", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a65d1d00a9d615182e94b903d334146e6", null ],
+    [ "GetAll", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#acd53b997662f23ba8a5e313a677562cf", null ],
+    [ "GetAll", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a6922b0cfeec385f6225b7e704b45a814", null ],
+    [ "GetAllAsync", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#acfe518b99876f47a616d680b0dc966bf", null ],
+    [ "GetAllIncluding", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a914015fbc3aaf97238ea4a7145e572ec", null ],
+    [ "GetAsync", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#aaf1ed55f40a1e9830aa73b75ffb52b3b", null ],
+    [ "Update", "interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html#a7960d96662d528c04512d614c2851c50", null ]
+];

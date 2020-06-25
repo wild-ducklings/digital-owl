@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_digital_owl_1_1_repository_1_1_repositories_1_1_base_1_1_generic_repository.html" title="DigitalOwl.Repository.Repositories.\lBase.GenericRepository\&lt; GroupRole \&gt;" alt="" coords="308,5,559,47"/>
+<area shape="rect" id="node2" href="$class_digital_owl_1_1_repository_1_1_repositories_1_1_group_role_repository.html" title="repo to GropRole " alt="" coords="607,39,837,80"/>
+<area shape="rect" id="node3" href="$interface_digital_owl_1_1_repository_1_1_interface_1_1_base_1_1_i_generic_repository.html" title="DigitalOwl.Repository.Interface.\lBase.IGenericRepository\&lt; GroupRole \&gt;" alt="" coords="5,71,260,112"/>
+<area shape="rect" id="node4" href="$interface_digital_owl_1_1_repository_1_1_interface_1_1_i_group_role_repository.html" title="DigitalOwl.Repository.Interface.\lIGroupRoleRepository" alt="" coords="329,71,537,112"/>
+</map>
