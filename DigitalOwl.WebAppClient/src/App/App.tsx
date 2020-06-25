@@ -8,6 +8,7 @@ import {Sidebar} from "Component/Sidebar/Sidebar"
 import {LandingPage} from "Page/Landing/LandingPage";
 import {GroupPage} from "Page/Group/GroupPage";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {CreatePoll} from "../Page/Poll/CreatePoll";
 
 const UseStyles = makeStyles(
     (theme: Theme) =>
@@ -34,13 +35,16 @@ export const App = () => {
                 <Route path={"/login"}>
                     <LoginPage/>
                 </Route>
-                <Route path={"/czygonciarzapojebalo"}>
+                <Route path={"/quizzes"}>
                     <Poll/>
+                </Route>
+                <Route path={"/create_quiz"}>
+                    <CreatePoll/>
                 </Route>
                 <Route path={"/group"}>
                     <GroupPage/>
                 </Route>
-                <Route path={"/"}>
+                <Route exact path={"/"}>
                     <LandingPage/>
                 </Route>
             </Switch>

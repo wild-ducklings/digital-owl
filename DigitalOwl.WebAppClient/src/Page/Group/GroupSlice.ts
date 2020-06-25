@@ -21,7 +21,7 @@ export const GroupGetAllThunk = createAsyncThunk<ModelGroup[], void>(
     async () => {
         try {
             const respose = await GroupGetAllService();
-            return (respose.data.Json()) as ModelGroup[];
+            return (respose.data) as ModelGroup[];
             // console.log(respose);
         } catch (e) {
             console.log(e);
@@ -37,7 +37,7 @@ export const GroupGetByIdThunk = createAsyncThunk<ModelGroup | null, number>(
         try {
             const respose = await GroupGetByIdService(id);
             // console.log(respose);
-            return (respose.data.Json()) as ModelGroup;
+            return (respose.data) as ModelGroup;
         } catch (e) {
             console.log(e);
             return null;
