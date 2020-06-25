@@ -1,6 +1,9 @@
-
 export interface ModelPoll {
-    Id: number,
-    Title: string,
+    id: number,
+    title: string,
     Points?: number,
+}
+
+export interface ModelCreatePoll {
+    Title: string,
 }
