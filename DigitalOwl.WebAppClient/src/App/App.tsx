@@ -1,4 +1,5 @@
 import React from "react";
+import {createStyles, Theme} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import {Poll} from "../Page/Poll/Poll";
 import {LoginPage} from "Page/Login/Login";
@@ -6,8 +7,7 @@ import {Navbar} from "Component/Navbar/Navbar";
 import {Sidebar} from "Component/Sidebar/Sidebar"
 import {LandingPage} from "Page/Landing/LandingPage";
 import {GroupPage} from "Page/Group/GroupPage";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import {createStyles, Theme} from "@material-ui/core";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 const UseStyles = makeStyles(
     (theme: Theme) =>
