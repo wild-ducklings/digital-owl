@@ -6,22 +6,22 @@ using DigitalOwl.Service.Dto.Base;
 namespace DigitalOwl.Service.Interface
 {
     /// <summary>
-    /// Interface for GroupMember Service.
+    /// Interface of Group Member Service
     /// </summary>
     public interface IGroupMemberService
     {
         /// <summary>
-        /// Create Entity from Dto async.
+        /// Create Entity from Dto asynchronously.
         /// </summary>
-        /// <param name="dto"> New object to be created. </param>
-        /// <param name="userId"> Id of the user creating particular group member. </param>
-        /// <returns> Response that contains created object (dto). </returns>
+        /// <param name="dto">New object</param>
+        /// <param name="userId">Id of user creating this particular object.</param>
+        /// <returns>Response that contains new created object.</returns>
         Task<DtoResponseResult<DtoGroupMember>> CreateAsync(DtoGroupMember dto, int userId);
 
         /// <summary>
-        /// Find all group members.
+        /// Pull all items form the database.
         /// </summary>
-        /// <returns> List of group members (dto). </returns>
+        /// <returns>List of Dtos</returns>
         Task<DtoResponseResult<IEnumerable<DtoGroupMember>>> GetAll();
 
         /// <summary>

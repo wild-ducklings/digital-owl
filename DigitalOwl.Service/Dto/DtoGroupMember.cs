@@ -20,5 +20,10 @@ namespace DigitalOwl.Service.Dto
         /// Foreign key of Many-to-One relation with <class>User</class>.
         /// </summary>
         public int UserId { get; set; }
+
+        /// <summary>
+        /// Foreign key of Many-to-One relation with <class>GroupRole</class>
+        /// </summary>
+        public int GroupRoleId { get; set; }
     }
 }

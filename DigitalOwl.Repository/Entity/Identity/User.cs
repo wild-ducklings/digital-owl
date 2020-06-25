@@ -122,6 +122,22 @@ namespace DigitalOwl.Repository.Entity.Identity
         public virtual IEnumerable<GroupMessage> GroupMessagesUpdated { get; set; }
 
         #endregion
+        
+        #region GroupMessage
+
+        /// <summary>
+        /// Inverse prop of TimeStamps
+        /// </summary>
+        [InverseProperty("CreatedBy")]
+        public virtual IEnumerable<GroupRole> GroupRolesCreated { get; set; }
+
+        /// <summary>
+        /// Inverse prop of TimeStamps
+        /// </summary>
+        [InverseProperty("UpdatedBy")]
+        public virtual IEnumerable<GroupRole> GroupRolesUpdated { get; set; }
+
+        #endregion
 
         #endregion
     }
