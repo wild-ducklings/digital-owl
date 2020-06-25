@@ -12,7 +12,7 @@ using DigitalOwl.Service.Services.Base;
 namespace DigitalOwl.Service.Services
 {
     /// <summary>
-    /// Group Service
+    /// Group Service.
     /// </summary>
     public class GroupService : BaseService, IGroupService
     {
@@ -25,6 +25,12 @@ namespace DigitalOwl.Service.Services
         {
         }
 
+        /// <summary>
+        /// Create group.
+        /// </summary>
+        /// <param name="dto"> Object to be created. </param>
+        /// <param name="userId"> Id of the user creating group. </param>
+        /// <returns> Response containing created object. </returns>
         public async Task<DtoResponseResult<DtoGroup>> CreateAsync(DtoGroup dto, int userId)
         {
             var entity = _mapper.Map<Group>(dto);
@@ -40,6 +46,10 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<DtoGroup>.CreateResponse(_mapper.Map<DtoGroup>(newEntity));
         }
 
+        /// <summary>
+        /// Find all groups.
+        /// </summary>
+        /// <returns> Response containing list of DtoGroup. </returns>
         public async Task<DtoResponseResult<IEnumerable<DtoGroup>>> GetAll()
         {
             var entities = await _unitOfWork.GroupRepository.GetAllAsync();
@@ -48,6 +58,11 @@ namespace DigitalOwl.Service.Services
                 _mapper.Map<IEnumerable<DtoGroup>>(entities));
         }
 
+        /// <summary>
+        /// Find group of given id.
+        /// </summary>
+        /// <param name="id"> Id of requested group. </param>
+        /// <returns> Response containing requested group. </returns>
         public async Task<DtoResponseResult<DtoGroup>> GetById(int id)
         {
             var entity = await _unitOfWork.GroupRepository.FindAsync(g => g.Id == id);
@@ -61,6 +76,12 @@ namespace DigitalOwl.Service.Services
                 _mapper.Map<DtoGroup>(entity));
         }
 
+        /// <summary>
+        /// Update particular group.
+        /// </summary>
+        /// <param name="dto"> Updated version of an object. </param>
+        /// <param name="userId"> Id of the user updating group. </param>
+        /// <returns> Response containing created group (dto). </returns>
         public async Task<DtoResponseResult<DtoGroup>> UpdateAsync(DtoGroup dto, int userId)
         {
             var entity = await _unitOfWork.GroupRepository.FindAsync(g => g.Id == dto.Id);
@@ -80,6 +101,11 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<DtoGroup>.CreateResponse(_mapper.Map<DtoGroup>(newEntity));
         }
 
+        /// <summary>
+        /// Delete the group of given id.
+        /// </summary>
+        /// <param name="id"> Group id. </param>
+        /// <returns> Success/failure message. </returns>
         public async Task<DtoResponse> Delete(int id)
         {
             var entity = await _unitOfWork.GroupRepository.FindAsync(g => g.Id == id);

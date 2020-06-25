@@ -20,6 +20,9 @@ namespace DigitalOwl.Repository.Entity.Identity
         /// </summary>
         public virtual IEnumerable<GroupMember> GroupMembers { get; set; }
 
+        /// <summary>
+        /// One-to-Many relation With <class>Group</class>
+        /// </summary>
         public virtual IEnumerable<GroupMessage> GroupMessages { get; set; }
 
         #region TimeStamps
@@ -27,13 +30,13 @@ namespace DigitalOwl.Repository.Entity.Identity
         #region PollAnswer
 
         /// <summary>
-        /// 
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty(("CreatedBy"))]
         public virtual IEnumerable<PollAnswer> AnswersCreated { get; set; }
 
         /// <summary>
-        /// 
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty(("UpdatedBy"))]
         public virtual IEnumerable<PollAnswer> AnswersUpdated { get; set; }
@@ -43,13 +46,13 @@ namespace DigitalOwl.Repository.Entity.Identity
         #region PollQuestion
 
         /// <summary>
-        /// 
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty(("CreatedBy"))]
         public virtual IEnumerable<PollQuestion> QuestionsCreated { get; set; }
 
         /// <summary>
-        /// 
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty(("UpdatedBy"))]
         public virtual IEnumerable<PollQuestion> QuestionsUpdated { get; set; }
@@ -59,13 +62,13 @@ namespace DigitalOwl.Repository.Entity.Identity
         #region Poll
 
         /// <summary>
-        /// 
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty(("CreatedBy"))]
         public virtual IEnumerable<Poll> PollsCreated { get; set; }
 
         /// <summary>
-        /// 
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty(("UpdatedBy"))]
         public virtual IEnumerable<Poll> PollsUpdated { get; set; }
@@ -75,13 +78,13 @@ namespace DigitalOwl.Repository.Entity.Identity
         #region Group
 
         /// <summary>
-        /// Inverse prop of TimeStamps
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty("CreatedBy")]
         public virtual IEnumerable<Group> GroupsCreated { get; set; }
 
         /// <summary>
-        /// Inverse prop of TimeStamps
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty("UpdatedBy")]
         public virtual IEnumerable<Group> GroupsUpdated { get; set; }
@@ -91,13 +94,13 @@ namespace DigitalOwl.Repository.Entity.Identity
         #region GroupMembers
 
         /// <summary>
-        /// Inverse prop of TimeStamps
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty("CreatedBy")]
         public virtual IEnumerable<GroupMember> GroupMembersCreated { get; set; }
 
         /// <summary>
-        /// Inverse prop of TimeStamps
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty("UpdatedBy")]
         public virtual IEnumerable<GroupMember> GroupMembersUpdated { get; set; }
@@ -107,13 +110,13 @@ namespace DigitalOwl.Repository.Entity.Identity
         #region GroupMessage
 
         /// <summary>
-        /// Inverse prop of TimeStamps
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty("CreatedBy")]
         public virtual IEnumerable<GroupMessage> GroupMessagesCreated { get; set; }
 
         /// <summary>
-        /// Inverse prop of TimeStamps
+        /// Inverse property of TimeStamps.
         /// </summary>
         [InverseProperty("UpdatedBy")]
         public virtual IEnumerable<GroupMessage> GroupMessagesUpdated { get; set; }

@@ -79,7 +79,7 @@ namespace DigitalOwl.Service.Services
         /// Find a poll with given Id including questions and answers.
         /// </summary>
         /// <param name="pollId"> Question Id.</param>
-        /// <returns> One requested question.</returns>
+        /// <returns> One requested poll.</returns>
         public async Task<DtoResponseResult<DtoPoll>> GetByIdIncluded(int pollId)
         {
             var entity =  _unitOfWork.PollRepository.FindBy(p => p.Id == pollId).AsQueryable().Include(p => p.PollQuestions)
@@ -93,9 +93,9 @@ namespace DigitalOwl.Service.Services
         /// <summary>
         /// Updates a particular poll.
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="dto"> Updated version of an object. </param>
+        /// <param name="userId"> Id of the user updating poll. </param>
+        /// <returns> Updated object (dto). </returns>
         public async Task<DtoResponseResult<DtoPoll>> UpdateAsync(DtoPoll dto, int userId)
         {
             var entity = await _unitOfWork.PollRepository.FindAsync(p => p.Id == dto.Id);
@@ -116,7 +116,7 @@ namespace DigitalOwl.Service.Services
         /// <summary>
         /// Delete the poll of given Id.
         /// </summary>
-        /// <param name="pollId">Id of a poll to be deleted</param>
+        /// <param name="pollId">Id of a poll to be deleted.</param>
         /// <returns>Success/failure message.</returns>
         public async Task<DtoResponse> Delete(int pollId)
         {

@@ -15,7 +15,7 @@ using DigitalOwl.Service.Services.Base;
 namespace DigitalOwl.Service.Services
 {
     /// <summary>
-    /// group member service
+    /// Group member service.
     /// </summary>
     public class GroupMemberService : BaseService, IGroupMemberService
     {
@@ -29,11 +29,11 @@ namespace DigitalOwl.Service.Services
         }
 
         /// <summary>
-        /// Create Entity from Dto async
+        /// Create Entity from Dto async.
         /// </summary>
-        /// <param name="dto">New object</param>
-        /// <param name="userId">Id of user how create this object</param>
-        /// <returns>Response that contains new crate object</returns>
+        /// <param name="dto"> New object to be created. </param>
+        /// <param name="userId"> Id of the user creating particular group member. </param>
+        /// <returns> Response that contains created object (dto). </returns>
         public async Task<DtoResponseResult<DtoGroupMember>> CreateAsync(DtoGroupMember dto, int userId)
         {
             var entity = _mapper.Map<GroupMember>(dto);
@@ -48,9 +48,9 @@ namespace DigitalOwl.Service.Services
         }
 
         /// <summary>
-        /// Method pull all items for db
+        /// Find all group members.
         /// </summary>
-        /// <returns>list of dto</returns>
+        /// <returns> List of group members (dto). </returns>
         public async Task<DtoResponseResult<IEnumerable<DtoGroupMember>>> GetAll()
         {
             var entities = await _unitOfWork.GroupMemberRepository.GetAllAsync();
@@ -58,6 +58,11 @@ namespace DigitalOwl.Service.Services
                 _mapper.Map<IEnumerable<DtoGroupMember>>(entities));
         }
 
+        /// <summary>
+        /// Find all group members of given group id.
+        /// </summary>
+        /// <param name="groupId"> Group id. </param>
+        /// <returns> List of group members. </returns>
         public async Task<DtoResponseResult<IEnumerable<DtoGroupMember>>> GetAllByGroupId(int groupId)
         {
             var entities = await _unitOfWork.GroupMemberRepository.FindAllAsync(gm => gm.GroupId == groupId);
@@ -65,7 +70,12 @@ namespace DigitalOwl.Service.Services
                 _mapper.Map<IEnumerable<DtoGroupMember>>(entities));
         }
 
-
+        /// <summary>
+        /// Checks if user of userId belongs to group with group Id.
+        /// </summary>
+        /// <param name="userId"> Id of requested user. </param>
+        /// <param name="groupId"> Group id to check if particular user is assigned to it. </param>
+        /// <returns> Requested group member. </returns>
         public async Task<DtoResponseResult<DtoGroupMember>> GetAllByGroupAndUserId(
             int userId, int groupId)
         {
@@ -81,6 +91,11 @@ namespace DigitalOwl.Service.Services
         }
 
 
+        /// <summary>
+        /// Find the group member by given id.
+        /// </summary>
+        /// <param name="id"> Group member id.</param>
+        /// <returns> One requested group member.</returns>
         public async Task<DtoResponseResult<DtoGroupMember>> GetById(int id)
         {
             var entity = await _unitOfWork.GroupMemberRepository.FindAsync(gm => gm.Id == id);
@@ -93,6 +108,12 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<DtoGroupMember>.CreateResponse(_mapper.Map<DtoGroupMember>(entity));
         }
 
+        /// <summary>
+        /// Updates a particular group member.
+        /// </summary>
+        /// <param name="dto"> Updated version of an object. </param>
+        /// <param name="userId"> Id of the user updating group member. </param>
+        /// <returns> Updated object (dto). </returns>
         public async Task<DtoResponseResult<DtoGroupMember>> UpdateAsync(DtoGroupMember dto, int userId)
         {
             var entity = await _unitOfWork.GroupMemberRepository.FindAsync(gm => gm.Id == dto.Id);
@@ -113,6 +134,12 @@ namespace DigitalOwl.Service.Services
             return DtoResponseResult<DtoGroupMember>.CreateResponse(_mapper.Map<DtoGroupMember>(newEntity));
         }
 
+        
+        /// <summary>
+        /// Remove the user of given id from group.
+        /// </summary>
+        /// <param name="id">Id of a group member to be deleted.</param>
+        /// <returns>Success/failure message.</returns>
         public async Task<DtoResponse> Delete(int id)
         {
             var entity = await _unitOfWork.GroupMemberRepository.FindAsync(g => g.Id == id);

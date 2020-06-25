@@ -28,7 +28,7 @@ namespace DigitalOwl.Service.Services
         /// <summary>
         /// Create a single answer.
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="dto"> Object to be created. </param>
         /// <param name="userId"> Id of the user creating an answer. </param>
         /// <returns> Created answer. </returns>
         public async Task<DtoResponseResult<DtoPollAnswer>> CreateAsync(DtoPollAnswer dto, int userId)
@@ -47,9 +47,9 @@ namespace DigitalOwl.Service.Services
         /// <summary>
         /// Create set of answers.
         /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="collection"> Set of answers to be created. </param>
+        /// <param name="userId"> Id of the user creating list of answers. </param>
+        /// <returns> Created list (dto). </returns>
         public async Task<DtoResponseResult<IEnumerable<DtoPollAnswer>>> CreateAsync(IEnumerable<DtoPollAnswer> collection, int userId)
         {
             var entities = _mapper.Map<IEnumerable<PollAnswer>>(collection);
@@ -113,9 +113,9 @@ namespace DigitalOwl.Service.Services
         /// <summary>
         /// Update given answer.
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="dto"> Updated version of an object. </param>
+        /// <param name="userId"> Id of the user updating an answer. </param>
+        /// <returns> Created object (dto).</returns>
         public async Task<DtoResponseResult<DtoPollAnswer>> UpdateAsync(DtoPollAnswer dto, int userId)
         {
             var entity = await _unitOfWork.PollAnswerRepository.FindAsync(p => p.Id == dto.Id);
@@ -136,7 +136,7 @@ namespace DigitalOwl.Service.Services
         /// <summary>
         /// Delete the answer of given Id.
         /// </summary>
-        /// <param name="answerId">Id of an answer to be deleted</param>
+        /// <param name="answerId"> Id of an answer to be deleted. </param>
         /// <returns>Success/failure message.</returns>
         public async Task<DtoResponse> Delete(int answerId)
         {

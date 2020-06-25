@@ -5,22 +5,25 @@ using DigitalOwl.Service.Dto.Base;
 
 namespace DigitalOwl.Service.Interface
 {
+    /// <summary>
+    /// Interface for PollQuestionService
+    /// </summary>
     public interface IPollQuestionService
     {
         /// <summary>
-        /// Create Entity from Dto asynchronously.
+        /// Create a single question.
         /// </summary>
-        /// <param name="dto">New object</param>
-        /// <param name="userId">Id of user creating this particular object.</param>
-        /// <returns>Response that contains new created object.</returns>
+        /// <param name="dto"> Object to be created. </param>
+        /// <param name="userId"> Id of the user creating a question. </param>
+        /// <returns> Created question. </returns>
         Task<DtoResponseResult<DtoPollQuestion>> CreateAsync(DtoPollQuestion dto, int userId);
 
         /// <summary>
         /// Create set of questions.
         /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="collection"> List of questions to be created. </param>
+        /// <param name="userId"> Id of the user creating list. </param>
+        /// <returns> Created list of objects (dtos). </returns>
         Task<DtoResponseResult<IEnumerable<DtoPollQuestion>>> CreateAsync(
             IEnumerable<DtoPollQuestion> collection, int userId);
 
@@ -55,15 +58,15 @@ namespace DigitalOwl.Service.Interface
         /// <summary>
         /// Updates a particular question.
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="dto"> Updated version of an object. </param>
+        /// <param name="userId"> Id of the user updating question. </param>
+        /// <returns> Updated object (dto). </returns>
         Task<DtoResponseResult<DtoPollQuestion>> UpdateAsync(DtoPollQuestion dto, int userId);
         /// <summary>
         /// Delete the question of given Id.
         /// </summary>
-        /// <param name="questionId">Id of question to be deleted</param>
+        /// <param name="pollQuestionId">Id of question to be deleted.</param>
         /// <returns>Success/failure message.</returns>
-        Task<DtoResponse> Delete(int questionId);
+        Task<DtoResponse> Delete(int pollQuestionId);
     }
 }

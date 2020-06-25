@@ -1,17 +1,17 @@
 namespace DigitalOwl.Service.Dto
 {
     /// <summary>
-    /// Dto of Group Entity
+    /// Dto for Group.
     /// </summary>
     public class DtoGroup
     {
         /// <summary>
-        /// Id of Group
+        /// Id of a Group.
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of Group
+        /// Name of a Group.
         /// </summary>
         public string Name { get; set; }
     }

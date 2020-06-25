@@ -7,6 +7,9 @@ using DigitalOwl.Repository.Interface.Entity;
 
 namespace DigitalOwl.Repository.Entity
 {
+    /// <summary>
+    /// Group entity.
+    /// </summary>
     public class Group : IEntity, ITimestamp
     {
         /// <summary>
@@ -26,6 +29,9 @@ namespace DigitalOwl.Repository.Entity
         // [InverseProperty("Group")]
         public virtual IEnumerable<GroupMember> GroupMembers { get; set; }
 
+        /// <summary>
+        /// Group Messages associated with this group.
+        /// </summary>
         public virtual IEnumerable<GroupMessage> GroupMessages { get; set; }
         
         #region Timestamp

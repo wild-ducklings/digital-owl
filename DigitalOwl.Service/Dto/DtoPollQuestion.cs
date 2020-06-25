@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DigitalOwl.Repository.Entity;
 
 namespace DigitalOwl.Service.Dto
 {

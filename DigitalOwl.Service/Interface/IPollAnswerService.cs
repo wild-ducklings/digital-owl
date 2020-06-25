@@ -5,12 +5,15 @@ using DigitalOwl.Service.Dto.Base;
 
 namespace DigitalOwl.Service.Interface
 {
+    /// <summary>
+    /// Interface for PollAnswerService.
+    /// </summary>
     public interface IPollAnswerService
     {
         /// <summary>
         /// Create a single answer.
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="dto"> Object to be created. </param>
         /// <param name="userId"> Id of the user creating an answer. </param>
         /// <returns> Created answer. </returns>
         Task<DtoResponseResult<DtoPollAnswer>> CreateAsync(DtoPollAnswer dto, int userId);
@@ -47,14 +50,14 @@ namespace DigitalOwl.Service.Interface
         /// <summary>
         /// Update given answer.
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="dto"> Updated version of an object. </param>
+        /// <param name="userId"> Id of the user updating an answer. </param>
+        /// <returns> Created object (dto).</returns>
         Task<DtoResponseResult<DtoPollAnswer>> UpdateAsync(DtoPollAnswer dto, int userId);
         /// <summary>
         /// Delete the answer of given Id.
         /// </summary>
-        /// <param name="answerId">Id of an answer to be deleted</param>
+        /// <param name="answerId"> Id of an answer to be deleted. </param>
         /// <returns>Success/failure message.</returns>
         Task<DtoResponse> Delete(int answerId);
     }
