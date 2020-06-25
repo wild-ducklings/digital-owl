@@ -3,6 +3,7 @@ import {ModelGroup} from "../Model/ModelGroup";
 
 export const GroupGetAllService = () =>
     api.get("/group");
+
 export const GroupGetByIdService = (id: number) =>
     api.get("/group/" + id.toString());
 

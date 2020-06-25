@@ -7,6 +7,7 @@ import {Navbar} from "Component/Navbar/Navbar";
 import {Sidebar} from "Component/Sidebar/Sidebar"
 import {LandingPage} from "Page/Landing/LandingPage";
 import {GroupPage} from "Page/Group/GroupPage";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 const UseStyles = makeStyles(
     (theme: Theme) =>
