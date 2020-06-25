@@ -3,8 +3,10 @@ import {SidebarReducer} from "Component/Sidebar/SidebarSlice";
 import {AuthReducer} from "Page/Login/AuthSlice";
 import {DropdownUserMenuReducer} from "Component/DropdownMenu/DropdownUserMenuSlice";
 import {GroupReducer} from "../Page/Group/GroupSlice";
+import {PollReducer} from "../Page/Poll/PollSlice";
 
 const reducers = combineReducers({
+    PollReducer,
     SidebarReducer,
     AuthReducer,
     DropdownUserMenuReducer,

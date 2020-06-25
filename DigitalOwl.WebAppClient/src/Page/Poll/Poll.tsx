@@ -1,14 +1,16 @@
-import React, {useState} from "react";
-import {Create} from "@material-ui/icons";
-import {Card, createStyles, Theme, Button, Icon, List, ListItem} from "@material-ui/core";
+import React from "react";
+import {Button, Card, createStyles, List, Theme} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import EditIcon from '@material-ui/icons/Edit';
+import {useDispatch, useSelector} from "react-redux";
+import {DispatchType, StateType} from "../../Store/store";
+import {PollAction} from "./PollSlice";
+import {SinglePoll} from "../../Component/SinglePoll";
 
-
-const PollStyle = makeStyles((theme: Theme) => createStyles({
+export const PollStyle = makeStyles((theme: Theme) => createStyles({
     root: {
         display: "flex",
+        justifyContent: "center",
         flexDirection: "column"
     },
     header: {
@@ -17,7 +19,7 @@ const PollStyle = makeStyles((theme: Theme) => createStyles({
     box: {
         display: "flex",
         alignContent: "space-between",
-        flexDirection: "row"
+        flexDirection: "row",
     },
     info: {
         display: "flex",
@@ -27,64 +29,36 @@ const PollStyle = makeStyles((theme: Theme) => createStyles({
     },
     space: {
         flexGrow: 1
-    },
-    list: {
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column"
     }
 
-}))
+}));
 
 export const Poll: React.FC<{}> = () => {
     const generalStyle = PollStyle();
-    const [isShownAddInfo, setIsShownAddInfo] = useState(false);
-    const [isShownUpdateInfoA, setIsShownUpdateInfoA] = useState(false);
-    const [isShownUpdateInfoB, setIsShownUpdateInfoB] = useState(false);
+
+    const dispatch = useDispatch<DispatchType>();
+    const PollAddInfoState = useSelector((state: StateType) => state.PollReducer.AddInfoPopup);
 
     const addInfo =
         <Card className={generalStyle.info}>
             Add a new quiz.
-        </Card>
+        </Card>;
 
-    const updateInfo =
-        <Card className={generalStyle.info}>
-            Edit Quiz.
-        </Card>
-
-    return <div className={generalStyle.root}>
+    return (<div className={generalStyle.root}>
         <Card className={generalStyle.box}>
-            <h1 className={generalStyle.header}> Quizes </h1>
-            <div className={generalStyle.space}></div>
-            <Button onMouseEnter={() => setIsShownAddInfo(true)}
-                    onMouseLeave={() => setIsShownAddInfo(false)}>
+            <h1 className={generalStyle.header}> Quizzes </h1>
+            <div className={generalStyle.space}> </div>
+            <Button onMouseEnter={() => dispatch(PollAction.ShowAddInfo())}
+                    onMouseLeave={() => dispatch(PollAction.HideAddInfo())}>
                 <AddCircleIcon/>
             </Button>
         </Card>
-        {isShownAddInfo && addInfo}
-        <List className={generalStyle.list}>
-
-            <Card className={generalStyle.box}>
-                <h4 className={generalStyle.header}> QuizA </h4>
-                <div className={generalStyle.space}></div>
-                <Button onMouseEnter={() => setIsShownUpdateInfoA(true)}
-                        onMouseLeave={() => setIsShownUpdateInfoA(false)}>
-                    <EditIcon/>
-                </Button>
-            </Card>
-        {isShownUpdateInfoA && updateInfo}
-
-            <Card className={generalStyle.box}>
-                <h4 className={generalStyle.header}> QuizB </h4>
-                <div className={generalStyle.space}></div>
-                <Button onMouseEnter={() => setIsShownUpdateInfoB(true)}
-                        onMouseLeave={() => setIsShownUpdateInfoB(false)}>
-                    <EditIcon/>
-                </Button>
-            </Card>
-            {isShownUpdateInfoB && updateInfo}
+        {PollAddInfoState && addInfo}
 
 
+        <List>
+            <SinglePoll Poll={{Id: 0, Title: "QuizA", Points: 3}}/>
+            <SinglePoll Poll={{Id: 1, Title: "QuizB", Points: 3}}/>
         </List>
-    </div>;
-}
+    </div>);
+};
