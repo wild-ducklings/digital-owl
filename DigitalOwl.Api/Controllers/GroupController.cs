@@ -78,7 +78,14 @@ namespace DigitalOwl.Api.Controllers
             }
 
             var newDto = result.Result;
-            await _groupMemberService.CreateAsync(new DtoGroupMember {GroupId = newDto.Id, UserId = UserId}, UserId);
+            // TODO make GroupRole not by Id but by name
+            await _groupMemberService.CreateAsync(new DtoGroupMember
+            {
+                GroupId = newDto.Id,
+                UserId = UserId,
+                GroupRoleId = 3
+            }, UserId);
+            // Error checking
             return CreatedAtAction(nameof(GetById), new {id = newDto.Id}, newDto);
         }
 

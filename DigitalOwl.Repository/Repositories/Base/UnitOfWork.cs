@@ -116,9 +116,10 @@ namespace DigitalOwl.Repository.Repositories.Base
         public IPollAnswerRepository PollAnswerRepository
         {
             get { return _pollAnswerRepository ??= new PollAnswerRepository(_dbContext); }
-        }        
+        }
 
         #endregion
+
         #endregion
 
         #region GroupAndRelated
@@ -151,7 +152,7 @@ namespace DigitalOwl.Repository.Repositories.Base
 
         #endregion
 
-        #region GroupMemberRepository
+        #region GroupMessageRepository
 
         private IGroupMessageRepository _groupMessageRepository;
 
@@ -161,6 +162,34 @@ namespace DigitalOwl.Repository.Repositories.Base
         public IGroupMessageRepository GroupMessageRepository
         {
             get { return _groupMessageRepository ??= new GroupMessageRepository(_dbContext); }
+        }
+
+        #endregion
+
+        #region GroupRoleRepository
+
+        private IGroupRoleRepository _groupRoleRepository;
+
+        /// <summary>
+        /// GroupMessage repository access point.
+        /// </summary>
+        public IGroupRoleRepository GroupRoleRepository
+        {
+            get { return _groupRoleRepository ??= new GroupRoleRepository(_dbContext); }
+        }
+
+        #endregion
+
+        #region GroupPoliceRepository
+
+        private IGroupPoliceRepository _groupPoliceRepository;
+
+        /// <summary>
+        /// GroupPolice repository access point.
+        /// </summary>
+        public IGroupPoliceRepository GroupPoliceRepository
+        {
+            get { return _groupPoliceRepository ??= new GroupPoliceRepository(_dbContext); }
         }
 
         #endregion

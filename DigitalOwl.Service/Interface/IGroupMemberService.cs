@@ -25,7 +25,7 @@ namespace DigitalOwl.Service.Interface
         Task<DtoResponseResult<IEnumerable<DtoGroupMember>>> GetAll();
 
         Task<DtoResponseResult<IEnumerable<DtoGroupMember>>> GetAllByGroupId(int groupId);
-        Task<DtoResponseResult<DtoGroupMember>> GetAllByGroupAndUserId(int userId, int groupId);
+        Task<DtoResponseResult<DtoGroupMember>> GetAllByGroupAndUserId(int groupId, int userId);
 
         Task<DtoResponseResult<DtoGroupMember>> GetById(int id);
 

@@ -35,7 +35,7 @@ namespace DigitalOwl.Api.Controllers
             }
             // TODO: map to DtoUser first 
             var userIdentity = _mapper.Map<User>(model);
-            userIdentity.Role = "Administrator"; // TODO FIX ME only temporary not for Production
+            userIdentity.Role = "Customer"; // TODO FIX ME only temporary not for Production
 
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
 

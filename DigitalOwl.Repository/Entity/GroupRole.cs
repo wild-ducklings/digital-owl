@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using DigitalOwl.Repository.Entity.Identity;
@@ -7,65 +8,37 @@ using DigitalOwl.Repository.Interface.Entity;
 namespace DigitalOwl.Repository.Entity
 {
     /// <summary>
-    ///  Entity of GroupMember
+    /// Group Role
     /// </summary>
-    public class GroupMember : IEntity, ITimestamp
+    public class GroupRole : IEntity, ITimestamp
     {
         /// <summary>
-        /// Id of GroupMember
+        /// ID
         /// </summary>
         [Key]
         public int Id { get; set; }
 
+        /// <summary>
+        /// Name of Role
+        /// </summary>
+        public string Name { get; set; }
 
-        #region ForeignKey
-
-        #region Group
 
         /// <summary>
-        /// Foreign key of Many-to-One relation with <class>Group</class>
+        /// Id of Police that User Can
         /// </summary>
-        public int GroupId { get; set; }
+        public int GroupPoliceId { get; set; }
 
         /// <summary>
-        /// Reference to <class>Group</class> as Many-to-One relation
+        /// Police that User Can
         /// </summary>
-        [ForeignKey("GroupId")]
-        public virtual Group Group { get; set; }
-
-        #endregion
-
-        #region Group
+        [ForeignKey("GroupPoliceId")]
+        public GroupPolice GroupPolice { get; set; }
 
         /// <summary>
+        /// One-to-many relation
         /// </summary>
-        public int GroupRoleId { get; set; }
-
-        /// <summary>
-        /// Reference to <class>GroupRole</class> as Many-to-One relation
-        /// </summary>
-        [ForeignKey("GroupRoleId")]
-        public virtual GroupRole GroupRole { get; set; }
-
-        #endregion
-
-
-        #region User
-
-        /// <summary>
-        /// Foreign key of Many-to-One relation with <class>User</class>
-        /// </summary>
-        public int UserId { get; set; }
-
-        /// <summary>
-        /// Reference to <class>User</class> as Many-to-One relation
-        /// </summary>
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-
-        #endregion
-
-        #endregion
+        public IEnumerable<GroupMember> GroupMembers { get; set; }
 
         #region Timestamp
 

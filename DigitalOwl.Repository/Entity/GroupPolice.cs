@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using DigitalOwl.Repository.Entity.Identity;
@@ -7,65 +8,25 @@ using DigitalOwl.Repository.Interface.Entity;
 namespace DigitalOwl.Repository.Entity
 {
     /// <summary>
-    ///  Entity of GroupMember
+    /// That tell user what can and cannot do in group
     /// </summary>
-    public class GroupMember : IEntity, ITimestamp
+    public class GroupPolice  : IEntity, ITimestamp
     {
         /// <summary>
-        /// Id of GroupMember
+        /// ID
         /// </summary>
         [Key]
         public int Id { get; set; }
 
-
-        #region ForeignKey
-
-        #region Group
+        /// <summary>
+        /// Name of Police
+        /// </summary>
+        public string Name { get; set; }
 
         /// <summary>
-        /// Foreign key of Many-to-One relation with <class>Group</class>
+        /// One-to-Many relations
         /// </summary>
-        public int GroupId { get; set; }
-
-        /// <summary>
-        /// Reference to <class>Group</class> as Many-to-One relation
-        /// </summary>
-        [ForeignKey("GroupId")]
-        public virtual Group Group { get; set; }
-
-        #endregion
-
-        #region Group
-
-        /// <summary>
-        /// </summary>
-        public int GroupRoleId { get; set; }
-
-        /// <summary>
-        /// Reference to <class>GroupRole</class> as Many-to-One relation
-        /// </summary>
-        [ForeignKey("GroupRoleId")]
-        public virtual GroupRole GroupRole { get; set; }
-
-        #endregion
-
-
-        #region User
-
-        /// <summary>
-        /// Foreign key of Many-to-One relation with <class>User</class>
-        /// </summary>
-        public int UserId { get; set; }
-
-        /// <summary>
-        /// Reference to <class>User</class> as Many-to-One relation
-        /// </summary>
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-
-        #endregion
-
-        #endregion
+        public IEnumerable<GroupRole> GroupRoles { get; set; }
 
         #region Timestamp
 
@@ -102,5 +63,6 @@ namespace DigitalOwl.Repository.Entity
         public DateTime? UpdatedDate { get; set; }
 
         #endregion
+        
     }
 }

@@ -67,7 +67,7 @@ namespace DigitalOwl.Service.Services
 
 
         public async Task<DtoResponseResult<DtoGroupMember>> GetAllByGroupAndUserId(
-            int userId, int groupId)
+            int groupId, int userId)
         {
             var entity =
                 await _unitOfWork.GroupMemberRepository.FindAsync(gm => gm.GroupId == groupId && gm.UserId == userId);
@@ -124,7 +124,7 @@ namespace DigitalOwl.Service.Services
 
             _unitOfWork.GroupMemberRepository.Delete(entity);
             await _unitOfWork.SaveChangesAsync();
-            
+
             return DtoResponse.Success();
         }
     }
